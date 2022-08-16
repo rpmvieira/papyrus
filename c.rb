@@ -23,8 +23,6 @@ c3 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.second.id,:engajamen
 
 
 
-
-
 # TPredicativo.find_or_create_by(:nome=>'Registro de engajamento',:natureza_id=>1,:natureza=>true,:valor=>500)
 # TPredicativo.find_or_create_by(:nome=>'Criação de usuário',:natureza_id=>1,:natureza=>true,:valor=>5)
 # TPredicativo.find_or_create_by(:nome=>'Check in em evento',:natureza_id=>1,:natureza=>true,:valor=>5)
