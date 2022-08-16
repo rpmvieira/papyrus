@@ -1,0 +1,56 @@
+<%= turbo_stream.update "flow" do %>
+<div class="flex items-center justify-between w-full p-4 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
+	<p class="text-lg font-bold text-black-400 hover:text-sky-400"><%= @engajado.pessoa.nome %></p>
+</div>
+<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
+	<table class="w-full text-sm text-left text-black-500 dark:text-black-400">
+		<tbody>
+			<tr>
+				<td class="px-2"><strong>Sexo</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.sexo.nome %></td>
+				<td class="px-2"><strong>Fator rh</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.t_sanguinea.nome %></td>
+			</tr>
+			<tr>
+				<td class="px-2"><strong>Etnia</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.etnia.nome %></td>
+				<td class="px-2"><strong>Estado Civil</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.est_civil.nome %></td>
+			</tr>
+			<tr>
+				<td class="px-2"><strong>Nacionalidade</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.nacionalidade_id %></td>
+				<td class="px-2"><strong>Naturalidade</strong></td>
+				<td class="px-2"><%= @engajado.pessoa.naturalidade.nome %></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="grid grid-cols-3 gap-4 w-full px-2 py-1 font-medium text-left ">
+		<div class="..."><b>Documentação</b>:</div>
+		<div class="col-span-2"><em>Cpf: </em> <a class="blur-sm text-red-900 hover:text-yellow-700 transition duration-150 ease-in-out" data-bs-toggle="tooltip" title="Informação privada"><%= sub_masked(@engajado.pessoa.cpf) %></a> </div>
+	</div>
+
+
+	<% if @engajado.contatos.principais.deste_t_contato(1).present? %>
+	<div class="grid grid-cols-3 gap-4 w-full px-2 py-1 font-medium text-left ">
+		<div class="..."><b>Contato</b>:</div>
+		<div class="col-span-2"><%= pricipais_contatos(@engajado) %></div>
+	</div>
+	<% else %>
+	<div class="flex items-center justify-between w-full px-2 py-1 font-medium text-left "><span><b>Nenhum contato cadastrado</b></span></div>
+	<% end %>
+
+	<% if @engajado.enderecos.principais.exists? %>
+	<div class="bg-white px-2 py-1 grid grid-cols-3 gap-4">
+		<div class="..."><b>Endereço</b>:</div>
+		<div class="col-span-2"><%= helper_endereco(@engajado.enderecos.principais.last) %></div>
+	</div>
+	<% else %>
+	<div class="flex items-center justify-between w-full px-2 py-1 font-medium text-left  "><span><b>Nenhum endereço cadastrado</b></span></div>
+	<% end %>
+
+
+
+</div>
+<% end %>

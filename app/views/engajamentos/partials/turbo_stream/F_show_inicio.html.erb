@@ -1,0 +1,19 @@
+<%#= turbo_stream_from "inicio" %>
+<!-- <div id="accordion-collapse" data-accordion="collapse"> -->
+	<%#= render partial: "engajamentos/partials/conteudo/show_inicio", locals: { engajados: @engajados} %>
+<!-- </div> -->
+
+
+
+  <%= form.fields_for :enderecos do |ff| %>
+    <div class="flex gap-2">
+      <div class="text-sm text-right"> <%= ff.object.id || "New ingredient" %> </div>
+      <%#= ff.select :municipio_id, Municipio.all.map { |i| [i.nome, i.id] }, include_blank: "Select ingredient" %>
+      <%= ff.text_field :logradouro, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%= ff.text_field :bairro, placeholder: "Qty" %>
+      <%= ff.text_field :numero, placeholder: "Qty" %>
+      <%= ff.text_field :cep, placeholder: "Qty" %>
+      <%= ff.check_box :_destroy, title: "Check to delete ingredient" %>
+    </div>
+  <% end %>
+

@@ -1,0 +1,42 @@
+<% contatos.group_by{|g|g.t_contato.nome}.each do |tipo, contatos| %>
+<dt class="text-sm font-medium text-black-900 border flex items-center justify-center">
+	<%= tipo %>
+</dt>
+<dd class="mt-1 text-sm font-medium text-gray-900 sm:mt-0 sm:col-span-3 border">
+	<% contatos.each do |contato|%>
+	<div id="<%= dom_id contato %>">
+		<div class="px-5 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-300"><%= contato.contato %><%= contato.preferencial %> <%= contato.observacao %> <%= contato.status %>
+			
+
+
+<%= contatavel.nome%>
+<%= @pessoa.nome%>
+<%= contato.id %>
+			<%= link_to edit_contato_path(contato), data: { turbo_frame: "modal" }, class: "flex items-center" do %>
+			<svg class="text-gray h-6 w-6" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+			</svg>
+			<% end %>
+
+			<%= link_to edit_pessoa_contato_path(contatavel,contato), data: { turbo_frame: "modal" }, class: "flex items-center" do %>
+			<svg class="text-gray h-6 w-6" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+			</svg>
+			<% end %>
+
+			<%= link_to new_pessoa_contato_path(@pessoa), data: { turbo_frame: "modal" }, class: "flex items-center" do %>
+			<svg class="text-gray h-6 w-6" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+			</svg>
+			<% end %>
+
+
+
+		</div>
+		<%#= contato.contato %> <%#= link_to 'Editar', root_path, class: "rounded-lg py-1 ml-2 px-1 bg-gray-100 inline-block font-medium" %><%#= link_to 'Excluir', root_path, class: "rounded-lg py-1 ml-2 px-1 bg-gray-100 inline-block font-medium" %>
+	</div>
+	<% end %>
+</dd>
+<% end %>
+
+

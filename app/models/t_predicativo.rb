@@ -1,0 +1,2 @@
+class TPredicativo < ApplicationRecord
+end

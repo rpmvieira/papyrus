@@ -1,0 +1,2 @@
+class Predicativo < ApplicationRecord
+end

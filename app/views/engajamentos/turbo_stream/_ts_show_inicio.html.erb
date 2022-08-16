@@ -1,0 +1,11 @@
+<% if @engajamento.lideranca?(current_usuario) %>
+
+<%= turbo_stream.update "flash" do %><% end %>
+<%= turbo_stream.update "show_inicio" do %><%= render partial: "engajamentos/partials/conteudo/show_inicio", locals: { engajados: @engajados} %><% end %>
+
+<% else %>
+-
+<% end %>
+
+
+

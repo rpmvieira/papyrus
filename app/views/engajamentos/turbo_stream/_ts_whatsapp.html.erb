@@ -1,0 +1,14 @@
+<% if @engajamento.lideranca?(current_usuario) %>
+
+	<% if pessoa.contatos.exists? %>
+	<%= formata_contato(pessoa.retorna_principal(pessoa.contatos.deste_t_contato(1)).contato,'Celular')	 if pessoa.contatos.deste_t_contato(1) %>
+	<% else %>
+	-
+	<% end %>
+
+<% else %>
+-
+<% end %>
+
+
+

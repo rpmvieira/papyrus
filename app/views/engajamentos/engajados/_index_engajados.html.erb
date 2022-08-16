@@ -1,0 +1,11 @@
+<%= turbo_stream_from "mystr" %>
+<div class="grid grid-cols-3 gap-4">
+	<div class="col-span-2">
+		<div id="accordion-collapse" data-accordion="collapse">
+			<%= render partial: "engajamentos/engajados/engajado", locals: { engajados: @engajados} %>
+		</div>
+	</div>
+	<div class="w-full mx-auto border" id="engajado">
+		<%#= render "the_stuff" %>
+	</div>
+</div>

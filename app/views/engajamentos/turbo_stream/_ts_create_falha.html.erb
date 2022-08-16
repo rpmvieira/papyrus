@@ -1,0 +1,24 @@
+<% if @engajamento.lideranca?(current_usuario) %>
+
+	<%= turbo_stream.update "flow" do %>
+		<%= render partial: "engajamentos/partials/form/engajado_novo" %>
+		<%= turbo_stream.update "flash" do %>
+			<% if @pessoa.errors.any? %>
+			<div id="error_explanation" class="bg-red-100 rounded-md p-4 mb-4">
+				<h2><%#= pluralize(@pessoa.errors.count, "#{ "erro" if pluralize(@pessoa.errors.count == 1} #{ "erros" if pluralize(@pessoa.errors.count >= 2}") %><b>Impossível salvar o registro:</b></h2>
+				<ul>
+					<% @pessoa.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+<% else %>
+-
+<% end %>
+
+
+

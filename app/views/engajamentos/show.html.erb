@@ -1,0 +1,72 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= @engajamento.nome %></h1><%#= link_to 'New pessoa', new_engajamento_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="engajamento" class="min-w-full">
+    <div class="mb-4 border-b border-black-200 dark:border-gray-700">
+      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Início</button>
+        </li>
+        <% if @engajamento.colaboracoes.present? %>
+        <% if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="minhas_colaboracoes-tab" data-tabs-target="#minhas_colaboracoes" type="button" role="tab" aria-controls="minhas_colaboracoes" aria-selected="false">Minhas Colaborações</button>
+        </li>
+        <% end %>
+        <% if @engajamento.responsavel?(current_usuario) %>
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="colaboradores-tab" data-tabs-target="#colaboradores" type="button" role="tab" aria-controls="colaboradores" aria-selected="false">Colaboradores</button>
+        </li>
+        <!-- <li role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="opcoes-tab" data-tabs-target="#opcoes" type="button" role="tab" aria-controls="opcoes" aria-selected="false">Opções</button>
+        </li> -->
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="flex flex-col col-span-2">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full sm:px-6 lg:px-8">
+            <div id="myTabContent">
+              <div class="" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="" id="show_inicio"><%= render partial: "engajamentos/turbo_stream/ts_show_inicio", locals: { engajados: @engajados} %></div>
+              </div>
+
+              <% if @engajamento.colaboracoes.present? %>
+              <% if @engajamento.responsavel?(current_usuario) %>
+              <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="colaboradores" role="tabpanel" aria-labelledby="colaboradores-tab">
+                <%= render "engajamentos/partials/conteudo/show_colaboradores" %>
+              </div>
+              <% end %>
+
+              <% if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
+              <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="minhas_colaboracoes" role="tabpanel" aria-labelledby="minhas_colaboracoes-tab">
+                <%#= render "engajamentos/partials/minhas_colaboracoes" %>
+              </div>
+              <% end %>
+
+              <% end %>
+
+
+              <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="opcoes" role="tabpanel" aria-labelledby="opcoes-tab">
+
+                <!-- <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">opcoes tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.ssssssssssssssssssssssssssssssssssssssssssssssssss</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full mx-auto">
+        <div id="flow">
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

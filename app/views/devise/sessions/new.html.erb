@@ -1,0 +1,51 @@
+<div class="w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <!-- <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow"> -->
+      <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">Acesse sua conta</h2>
+      <!-- <p class="mt-2 text-center text-sm text-gray-600">
+        Or
+        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> start your 14-day free trial </a>
+      </p> -->
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="rounded-md shadow-sm -space-y-px">
+      <div class="py-1">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Email" %>
+      </div>
+      <div class="py-1">
+        <%= f.password_field :password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Senha" %>
+      </div>
+    </div>
+
+    <!-- <div>
+      <label for="email-address" class="sr-only">Email address</label>
+      <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+    </div>
+    <div>
+      <label for="password" class="sr-only">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+    </div> -->
+
+    <% if devise_mapping.rememberable? %>
+    <div class="flex items-center justify-between py-2">
+      <div class="flex items-center">
+        <%= f.check_box :remember_me, class:"h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+        <%= f.label "Lembrar de mim", class:"ml-2 block text-sm text-gray-900" %>
+      </div>
+    </div>
+    <% end %>
+
+    <div>
+      <%= f.submit "Ao infinito e além", class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+
+    <div class="text-sm"><%= render "devise/shared/links" %></div>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+

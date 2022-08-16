@@ -1,0 +1,11 @@
+<%= turbo_stream_from "inicio" %>
+<div class="grid grid-cols-3 gap-4">
+	<div class="col-span-3">
+		<div id="accordion-collapse" data-accordion="collapse">
+			<%= render partial: "engajamentos/inicio", locals: { engajados: @engajados} %>
+		</div>
+	</div>
+	<div class="w-full mx-auto border" id="inicio">
+		<%#= render "the_stuff" %>
+	</div>
+</div>

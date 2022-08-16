@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  documentavel_id: MyString
+  documentavel_type: MyString
+  t_documento_id: MyString
+  numero: MyString
+  emissor: MyString
+  emissao: MyString
+  uf_id: MyString
+  zona_eleitoral: MyString
+  secao: MyString
+  serie: MyString
+  visto: MyString
+  livro: MyString
+  folha: MyString
+  observacao: MyString
+  verificacao: MyString
+  verificacao_data: MyString
+  verificacao_responsavel_id: MyString
+  status: MyString
+
+two:
+  documentavel_id: MyString
+  documentavel_type: MyString
+  t_documento_id: MyString
+  numero: MyString
+  emissor: MyString
+  emissao: MyString
+  uf_id: MyString
+  zona_eleitoral: MyString
+  secao: MyString
+  serie: MyString
+  visto: MyString
+  livro: MyString
+  folha: MyString
+  observacao: MyString
+  verificacao: MyString
+  verificacao_data: MyString
+  verificacao_responsavel_id: MyString
+  status: MyString

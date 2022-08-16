@@ -1,0 +1,20 @@
+<div id="<%= dom_id pessoa %>">
+  <% if action_name == "index" %>
+  <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= pessoa.nome %></td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= pessoa.cpf %></td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= pessoa.nascimento %></td>
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= pessoa.mae %></td>
+    <td>
+      <% if action_name != "show" %>
+      <%= link_to "Show this pesssoa", pessoa, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this pessoa', edit_pessoa_path(pessoa), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <hr class="mt-6">
+      <% end %>
+    </td>
+  </tr>
+  <% elsif action_name == "show" %>
+  <%= render partial: "pessoas/pessoa_show", locals: { contatos: pessoa.contatos, pessoa: pessoa } %>
+    <% end %>
+</div>

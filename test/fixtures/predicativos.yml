@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  t_predicativo_id: 1
+  t_predicante_id: 1
+  registro_responsavel_id: 1
+  registro_data: 2022-08-06
+  status: MyString
+
+two:
+  t_predicativo_id: 1
+  t_predicante_id: 1
+  registro_responsavel_id: 1
+  registro_data: 2022-08-06
+  status: MyString

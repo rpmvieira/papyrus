@@ -1,0 +1,199 @@
+<div class="w-full">
+  <div class="min-w-full">
+    <%= render @pessoa %>
+  </div>
+</div>
+
+<%= turbo_frame_tag "modal" do %>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+      <h1 class="text-gray-800 font-semibold text-xl mb-4">Editsssssssing pessoa</h1>
+      <%#= render 'form', pessoa: @pessoa %>dDDDDDDDDDDDDDDDDDDD
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col">
+  <div class="bg-whitw hover:bg-gray-100 ...">
+    <%= e.engajado.nome %>
+  </div>
+
+  <form class="flex items-center space-x-6">
+    <div class="shrink-0">
+      <img class="h-16 w-16 object-cover rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="Current profile photo" />
+    </div>
+    <label class="block">
+      <span class="sr-only">Choose profile photo</span>
+      <input type="file" class="block w-full text-sm text-slate-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-violet-50 file:text-violet-700
+      hover:file:bg-violet-100
+      "/>
+    </label>
+  </form>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= e.engajado.nome %></h1>
+    <%= link_to 'Edisstar', edit_pessoa_path(e.engajado), data: { turbo_frame: "modal" }, class: "mt-2 rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Excluir', pessoa_path(e.engajado), method: :delete, class: "mt-2 rounded-lg py-1 px-3 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Voltar', pessoas_path, class: "ml-2 rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
+  </div>
+  <br>
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900"><strong>Dados Pessoais</strong></h3>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <!-- <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-black-900">
+            <h3 class="text-lg leading-6 font-medium text-gray-900"><strong>Informação básica:</strong></h3>
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <table class="min-w-full">
+              <tbody>
+                <tr>
+                  <td><strong>Sexo</strong></td>
+                  <td><%= e.engajado.sexo.nome %></td>
+                  <td><strong>Fator rh</strong></td>
+                  <td><%= e.engajado.t_sanguinea.nome %></td>
+                </tr>
+                <tr>
+                  <td><strong>Etnia</strong></td>
+                  <td><%= e.engajado.etnia.nome %></td>
+                  <td><strong>Estado Civil</strong></td>
+                  <td><%= e.engajado.est_civil.nome %></td>
+                </tr>
+                <tr>
+                  <td><strong>Nacionalidade</strong></td>
+                  <td><%= e.engajado.nacionalidade_id %></td>
+                  <td><strong>Naturalidade</strong></td>
+                  <td><%= e.engajado.naturalidade.nome %></td>
+                </tr>
+              </tbody>
+            </table>
+          </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-black-900">
+            <h3 class="text-lg leading-6 font-medium text-gray-900"><strong>Documentação</strong></h3>
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%#= render partial: "contatos/form", locals: { contato: Contato.new, contatavel: @pessoa} %>
+            <div class="grid grid-cols-3">
+              <div class="mr-2"><b>Cpf</b>:</div>
+              <div class="col-span-2 ml-2 mr-2"><%= e.engajado.cpf %></div>
+            </div>
+            <% if e.engajado.documentos.present? %>
+            <% e.engajado.documentos.each do |doc| %>
+            <div class="grid grid-cols-3">
+              <div class="mr-2"><b><%= doc.t_documento.nome %></b>:</div>
+              <div class="col-span-2 ml-2 mr-2"><%= doc.numero %></div>
+            </div>
+            <% end %>
+            <% end %>
+          </dd>
+        </div> -->
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-black-900">
+            <h3 class="text-lg leading-6 font-medium text-gray-900"><strong>Endereço</strong></h3>
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%#= render pessoa.enderecos %>
+            <table class="min-w-full">
+              <tbody>
+                <% if e.engajado.enderecos.present? %>
+                <% e.engajado.enderecos.each do |ed| %>
+                <tr>
+                  <td><b>Residencial</b></td>
+                  <td colspan="2">
+                    <%= ed.logradouro %>, <%= ed.numero %> - <%= ed.bairro %> - <%= ed.municipio.nome %>/<%= ed.estado.sigla %>
+                  </td>
+                </tr>
+                <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </dd>
+        </div>
+        <div class="rounded border-2 border-neutral-500 ...">
+          <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+
+
+
+
+            <div class="flex justify-between items-center border col-span-4">
+              <h3 class="text-lg leading-6 font-medium text-gray-900"><strong>Contatos</strong></h3>
+              <%= link_to new_pessoa_contato_path(e.engajado), data: { turbo_frame: "modal" }, class: "flex items-center" do %>
+              <svg class="text-gray h-6 w-6" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <% end %>
+            </div>
+
+
+            <%= render partial: "pessoas/contatos/contato", locals: { contatos: e.engajado.contatos, contatavel: e.engajado} %>
+          </div>
+        </div>
+
+
+
+
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-black-900">Status</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <table class="min-w-full">
+              <tbody>
+                <tr>
+                  <td colspan="3"><strong><%= e.engajado.status %></strong></td>
+                  <!-- <td><a class="blur-sm text-red-600 hover:text-yellow-700 transition duration-150 ease-in-out" data-bs-toggle="tooltip" title="Informação privada"><%= e.engajado.status %></a> -->
+                  </tr>
+                </tbody>
+              </table>
+            </dd>
+          </div>
+
+
+        </dl>
+      </div>
+    </div>
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+    </div>
+  </div>
+</div>
+<% end %>

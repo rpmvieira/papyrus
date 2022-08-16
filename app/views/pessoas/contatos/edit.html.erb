@@ -1,0 +1,66 @@
+<%= turbo_frame_tag "modal" do %>
+<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+      <h1 class="text-gray-800 font-semibold text-xl mb-4">Editsssssssing pessoa$$$$$$$$$$$$$$$$$$</h1>
+      s
+<%#= render 'editform', contato: @contato %>
+      <%#= render partial: "pessoas/contatos/editform", locals: { contato: @contato, contatavel: @contatavel } %>
+      <%#= render 'form', pessoa: @pessoa %>
+
+
+
+<%= @contato.id %>
+
+
+
+
+
+
+
+<%= form_with(model: @contato,  data: { turbo_frame: "_top" }) do |f| %>
+<% if f.object.errors.any? %>
+<div id="error_explanation" class="bg-red-100 rounded-md p-4 mb-4">
+  <h2><%= pluralize(f.object.errors.count, "erro") %> - FFFFFFFFFFFImpossível salvar o registro:</h2>
+  <ul>
+    <% f.object.errors.each do |error| %>
+    <li><%= error.message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<br>
+<div class="grid grid-cols-3">
+  <div class="mr-2">
+    <%= f.label 'Tipo', class: "text-sm font-medium text-gray-800 mb-1 block" %>
+    <%= f.collection_select :t_contato_id, TContato.order(:nome), :id, :nome %>
+  </div>
+  <div class="col-span-2 ml-2 mr-2">
+    <%= f.label :contato, class: "text-sm font-medium text-gray-800 mb-1 block" %>
+    <%= f.text_field :contato %>
+  </div>
+</div>
+<br>
+<div class="mb-4">
+  <%= f.label "Principal?", class: "text-sm font-medium text-gray-800 mb-1 block" %>
+  <%= f.radio_button :preferencial, true %>
+  <%= f.label :preferencial, "Sim" %>
+  <%#= f.checkbox :preferencial %>
+  <%= f.radio_button :preferencial, false %>
+  <%= f.label :nao_preferencial, "Não" %>
+</div>
+<hr>
+<br>
+<div class="flex items-center">
+  <%= f.submit class: "cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-4" %>
+  <%# if f.object.persisted? %>
+  <%= link_to 'Cancelar', @contatavel %>
+  <% end %>
+
+
+    </div>
+  </div>
+</div>
+<% end %>

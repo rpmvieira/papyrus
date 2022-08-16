@@ -1,0 +1,40 @@
+<div id="accordion-collapse" data-accordion="collapse">
+	<% @colaboracoes.group_by{|x|x.t_colaboracao.nome}.each do |tipo,colaboracoes| %>
+	<h2 id="accordion-collapse-heading-<%= tipo.object_id %>">
+		<button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-1 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-<%= tipo.object_id %>" aria-expanded="false" aria-controls="accordion-collapse-body-<%= tipo.object_id %>">
+			<span><%= tipo %></span>
+			<svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+		</button>
+	</h2>
+	<div id="accordion-collapse-body-<%= tipo.object_id %>" class="hidden" aria-labelledby="accordion-collapse-heading-<%= tipo.object_id %>">
+		<div class="p-5 font-light border border-b-1 border-gray-200 dark:border-gray-700">
+			<table class="min-w-full">
+				<thead class="bg-white border-b border-b bg-gray-300">
+					<tr>
+						<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">#</th>
+						<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Nome</th>
+						<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Cpf</th>
+						<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Engajados</th>
+						<!-- <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Mãe</th> -->
+						<th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Opções</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%#= render @pessoas %>
+					<% @colaboracoes.each do |col| %>
+					<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+						<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"></td>
+						<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= col.colaborador.nome %></td>
+						<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a class="blur-sm text-red-900 hover:text-yellow-700 transition duration-150 ease-in-out" data-bs-toggle="tooltip" title="Informação privada"><%= sub_masked(col.colaborador.cpf) %></a></td>
+						<td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= col.engajados.count %></td>
+						<td>
+							<button type="button" class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-3 py-1 text-center" disabled="">Editar</button>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+</div>

@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cpf: MyString
+  mae: MyString
+  nascimento: 2022-07-31
+  sexo_id: 1
+  t_sanguinea_id: 1
+  etnia_id: 1
+  est_civil_id: 1
+  nacionalidade_id: 1
+  naturalidade_id: 1
+  verificacao: false
+  verificacao_data: 2022-07-31
+  verificacao_responsavel_id: 1
+  status: MyString
+
+two:
+  nome: MyString
+  cpf: MyString
+  mae: MyString
+  nascimento: 2022-07-31
+  sexo_id: 1
+  t_sanguinea_id: 1
+  etnia_id: 1
+  est_civil_id: 1
+  nacionalidade_id: 1
+  naturalidade_id: 1
+  verificacao: false
+  verificacao_data: 2022-07-31
+  verificacao_responsavel_id: 1
+  status: MyString
