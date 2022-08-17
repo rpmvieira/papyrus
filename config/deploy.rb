@@ -6,6 +6,12 @@ set :repo_url, "git@github.com:rpmvieira/papyrus.git"
 
 
 
+set :branch, "stable"
+set :repository_cache, "git_cache"
+set :deploy_via, :remote_cache
+set :ssh_options, { :forward_agent => true }
+
+
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
