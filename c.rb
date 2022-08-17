@@ -1,11 +1,6 @@
-Usuario.finda_or_create_by!(:pessoa_id=>2,:email=>'sandra@teste.com',:password=>'123456')
+Usuario.finda_or_create_by!(:pessoa_id=>2,:email=>'sandramcp32@gmail.com',:password=>'123456')
 Usuario.finda_or_create_by!(:pessoa_id=>1,:email=>'teste@teste.com',:password=>'123456')
 
-30.times do |p|
-pp = Pessoa.create!(:nome=>Faker::Name.name_with_middle,:cpf=>CPF.generate,:mae=>Faker::Name.name_with_middle,:nascimento=>Faker::Date.between(from: '1982-09-23', to: '2014-09-25'))
-	Engajado.find_or_create_by!(:pessoa_id=>pp.id, :colaboracao_id=>1, :engajamento_id=>1)
-pp.enderecos.find_or_create_by!(:logradouro=>"#{Faker::Address.street_suffix} #{Faker::Address.street_name}", :bairro=>Faker::Address.community, :numero=>Faker::Address.building_number, :cep=>Faker::Address.postcode, :municipio_id=>Municipio.find_by_nome('Macapa').id, :verificacao=>true, :verificacao_data=>DateTime.now, :verificacao_responsavel_id=> 1, :principal=> 'principal', :status=> 'criado')
-end
 
 # .strftime("%A, %d de %B de %Y, %H:%M h")
 Engajamento.find_or_create_by!(:nome=>'Eleições 2022',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)

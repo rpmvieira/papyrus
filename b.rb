@@ -108,9 +108,9 @@ Usuario.create!(password: '123456', password_confirmation: '123456', email: 'san
 
 e1 = Endereco.find_or_create_by!(:enderecavel_id=>1,:enderecavel_type=>'Pessoa',:logradouro=>'Av Santana',:bairro=>'Castanheira',:numero=>'172',:cep=>'68900000',:municipio_id=>Municipio.find_by_nome('Amapa').id,:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
 
-contato1 = Contato.find_or_create_by!(:contatavel_id=>1, :contatavel_type=>'Pessoa', :contato=>'96992016310', :t_contato_id=>1, :preferencial=>true)
+contato1 = Contato.find_or_create_by!(:contatavel_id=>1, :contatavel_type=>'Pessoa', :contato=>'96992016310', :t_contato_id=>1, :principal=>true)
 contato2 = Contato.find_or_create_by!(:contatavel_id=>1, :contatavel_type=>'Pessoa', :contato=>'9632255738', :t_contato_id=>2)
-contato3 = Contato.find_or_create_by!(:contatavel_id=>1, :contatavel_type=>'Pessoa', :contato=>'ruan.vieira@ifap.edu.br', :t_contato_id=>3, :preferencial=>true)
+contato3 = Contato.find_or_create_by!(:contatavel_id=>1, :contatavel_type=>'Pessoa', :contato=>'ruan.vieira@ifap.edu.br', :t_contato_id=>3, :principal=>true)
 
 documento1 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type=>'Pessoa',:t_documento_id=>1,:numero=>'283845',:emissor=>'SSP',:emissao=>'26/06/1989',:uf_id=>3,:observacao=>'2a via',:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
 documento2 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type=>'Pessoa',:t_documento_id=>2,:numero=>'123456788',:emissor=>'SSP',:emissao=>'27/06/1989',:zona_eleitoral=>'090',:secao=>'010',:uf_id=>3,:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
