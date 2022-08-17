@@ -1,18 +1,18 @@
-Usuario.finda_or_create_by!(:pessoa_id=>2,:email=>'sandramcp32@gmail.com',:password=>'123456')
-Usuario.finda_or_create_by!(:pessoa_id=>1,:email=>'teste@teste.com',:password=>'123456')
-
-
-# .strftime("%A, %d de %B de %Y, %H:%M h")
-Engajamento.find_or_create_by!(:nome=>'Eleições 2022',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
-Engajamento.find_or_create_by(:nome=>'Eleições 2020',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
-Engajamento.find_or_create_by(:nome=>'Eleições 2018',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
-Engajamento.find_or_create_by(:nome=>'Eleições 2018',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.second.id)
+# Usuario.finda_or_create_by!(:pessoa_id=>2,:email=>'sandramcp32@gmail.com',:password=>'123456')
+# Usuario.finda_or_create_by!(:pessoa_id=>1,:email=>'teste@teste.com',:password=>'123456')
 
 Natureza.find_or_create_by(:nome=>'Eleição Oficial',:marcador=>'Eleição')
 TColaboracao.find_or_create_by(:nome=>'Liderança',:natureza_id=>1,:descricao=>'-')
+# .strftime("%A, %d de %B de %Y, %H:%M h")
+Engajamento.find_or_create_by!(:nome=>'Eleições 2022',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
+# Engajamento.find_or_create_by(:nome=>'Eleições 2020',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
+# Engajamento.find_or_create_by(:nome=>'Eleições 2018',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
+# Engajamento.find_or_create_by(:nome=>'Eleições 2018',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.second.id)
+
+
 
 c1 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.first.id,:engajamento_id=>1,:t_colaboracao_id=>1,:status=>'ativo')
-c2 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.first.id,:engajamento_id=>2,:t_colaboracao_id=>1,:status=>'ativo')
+# c2 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.first.id,:engajamento_id=>2,:t_colaboracao_id=>1,:status=>'ativo')
 c3 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.second.id,:engajamento_id=>1,:t_colaboracao_id=>1,:status=>'ativo')
 
 
