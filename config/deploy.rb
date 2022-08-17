@@ -4,6 +4,9 @@ lock "~> 3.17.1"
 set :application, "papyrus"
 set :repo_url, "git@github.com:rpmvieira/papyrus.git"
 
+
+
+
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
 set :rbenv_prefix, '/usr/bin/rbenv exec' # Cf issue: https://github.com/capistrano/rbenv/issues/96
