@@ -1,0 +1,32 @@
+<div id="<%= dom_id mensagem %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Destinatario:</strong>
+    <%= mensagem.destinatario_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Destinatario type:</strong>
+    <%= mensagem.destinatario_type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Conteudo:</strong>
+    <%= mensagem.conteudo %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Entregue:</strong>
+    <%= mensagem.entregue %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Observacao:</strong>
+    <%= mensagem.observacao %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this mensagem", mensagem, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this mensagem', edit_mensagem_path(mensagem), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -24,7 +24,13 @@ module Contatos
 				}
 			else
 				format.turbo_stream { 
-					render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { engajado: @engajado, pessoa: @pessoa, engajamento: @engajamento })
+					render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { pessoa: @pessoa })
+					# render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { engajado: @engajado, pessoa: @pessoa, engajamento: @engajamento })
+
+					# render turbo_stream: turbo_stream.update("flow", partial: "shared/ops")
+
+					
+
 				}
 				format.html { redirect_to @engajamento }
 			end

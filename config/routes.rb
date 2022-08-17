@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mensagens
   resources :engajamentos do
     # get 'show' => 'engajamentos#show', as: :mostrar
     resources :engajados, module: :engajamentos do

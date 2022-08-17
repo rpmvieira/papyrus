@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destinatario_id: 1
+  destinatario_type: MyString
+  conteudo: MyString
+  entregue: false
+  observacao: MyString
+
+two:
+  destinatario_id: 1
+  destinatario_type: MyString
+  conteudo: MyString
+  entregue: false
+  observacao: MyString

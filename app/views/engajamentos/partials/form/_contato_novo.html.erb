@@ -5,7 +5,7 @@
 	<%= form_with(model: @contato, url: engajamento_engajado_contato_create_path(@engajamento,@engajado), data: { turbo_frame: "_top" }) do |form| %>
 	<div class="" id="flash"></div>
 	<div class="p-2">
-		<% if @pessoa.contatos.exists? %>
+		<% if pessoa.contatos.exists? %>
 		<%= form.label 'Tipo', class: "text-sm font-medium text-gray-800 mb-1 block" %>
 		<%= form.collection_select :t_contato_id, TContato.order(:nome), :id, :nome, html_options: {class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}  %>
 		<% else %>

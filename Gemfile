@@ -59,8 +59,11 @@ end
 group :development do
   # gem 'capistrano'
   gem "capistrano", "~> 3.17", require: false
-  gem 'capistrano-ssh-doctor', '~> 1.0'
-  gem 'capistrano-rails'
+  # gem "capistrano-rails", "~> 1.3", require: false
+  gem 'capistrano-rails', require: false
+
+  # gem 'capistrano-ssh-doctor', '~> 1.0'
+  gem 'capistrano-ssh-doctor', git: 'https://github.com/capistrano-plugins/capistrano-ssh-doctor.git'
   gem 'capistrano-passenger'
   gem 'capistrano-rbenv'
   # Use console on exceptions pages [https://github.com/rails/web-console]

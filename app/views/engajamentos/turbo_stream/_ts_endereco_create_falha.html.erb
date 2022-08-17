@@ -1,13 +1,14 @@
 <% if @engajamento.lideranca?(current_usuario) %>
 
 	<%= turbo_stream.update "flow" do %>
-		<%= render partial: "engajamentos/partials/form/contato_novo", locals: { pessoa: @engajado.pessoa} %>
+		<%= render partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @engajado.pessoa} %>
 		<%= turbo_stream.update "flash" do %>
-			<% if @contato.errors.any? %>
+
+			<% if @endereco.errors.any? %>
 			<div id="error_explanation" class="bg-red-100 rounded-md p-4 mb-4">
 				<h2><%#= pluralize(@contato.errors.count, "#{ "erro" if pluralize(@contato.errors.count == 1} #{ "erros" if pluralize(@contato.errors.count >= 2}") %><b>Impossível salvar o registro:</b></h2>
 				<ul>
-					<% @contato.errors.each do |error| %>
+					<% @endereco.errors.each do |error| %>
 					<li><%= error.full_message %></li>
 					<% end %>
 				</ul>
