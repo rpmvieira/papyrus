@@ -2,7 +2,15 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-// import FlashController from "flash_controller"
-// application.register("flash", FlashController)
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+eagerLoadControllersFrom("controllers", application)
+
+
+
+import FlashController from "controllers/flash_controller"
+application.register("flash", FlashController)
+
+
+
