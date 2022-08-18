@@ -1,6 +1,5 @@
 <% if @engajamento.lideranca?(current_usuario) %>
 
-	<%= turbo_stream.update "flow" do %>
 		<%= render partial: "engajamentos/partials/form/contato_novo", locals: { pessoa: @engajado.pessoa} %>
 		<%= turbo_stream.update "flash" do %>
 			<% if @contato.errors.any? %>
@@ -14,7 +13,6 @@
 			</div>
 			<% end %>
 		<% end %>
-	<% end %>
 
 <% else %>
 -

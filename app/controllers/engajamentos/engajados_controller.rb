@@ -8,12 +8,12 @@ class Engajamentos::EngajadosController < ApplicationController
 	before_action :set_engajado, only: %i[ show contato_novo contato_create endereco_novo endereco_create ] # edit update destroy
 	before_action :set_pessoa, only: %i[ ]
 
-	def show;render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/engajados/show_engajado", locals: { engajado: @engajado }));end
+	def show;render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/engajados/show_engajado", locals: { engajado: @engajado }));end
 
 	def new
 		if @engajamento.lideranca?(current_usuario)
 			@pessoa = Pessoa.new
-			render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/partials/form/engajado_novo", locals: { pessoa: @pessoa, engajamento: @engajamento }))
+			render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_engajado_novo", locals: { pessoa: @pessoa, engajamento: @engajamento }))
 		end
 	end
 
@@ -28,12 +28,12 @@ class Engajamentos::EngajadosController < ApplicationController
 					@pessoa.engajados.create(:colaboracao_id=>@colaboracao.colaborador_id,:status=>'ativo')
 					@pessoa = Pessoa.new
 					format.turbo_stream {
-						render( turbo_stream: turbo_stream.update("show_inicio", partial: "engajamentos/turbo_stream/ts_show_inicio", locals: { engajados: @engajados} ))
+						render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_show_inicio", locals: { engajados: @engajados} ))
 						flash[:notice] = "Registro adicionado com sucesso."
 					}
 				else
 					format.turbo_stream { 
-						render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_create_falha", locals: { pessoa: @pessoa, engajamento: @engajamento, engajados: @engajados })
+						render turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_engajado_create_falha", locals: { pessoa: @pessoa, engajamento: @engajamento, engajados: @engajados })
 					}
 					format.html { redirect_to @engajamento }
 				end

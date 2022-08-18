@@ -1,13 +1,36 @@
 <% if @engajamento.lideranca?(current_usuario) %>
 
-<%= turbo_stream.update "flow" do %>
-<div id="toast-success" class="flex items-center p-4 mb-4 w-full max-w-xs text-gray-900 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 border" role="alert">
-	<div class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-200 rounded-lg dark:bg-green-800 dark:text-green-600">
-		<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-		<span class="sr-only">Check icon</span>
+<%= turbo_stream.update "modal" do %>
+
+
+
+<!-- <div class="fixed z-15 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+	<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+		<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+		<div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+
+			<div id="toast-success" class="flex items-center p-4 mb-4 w-full max-w-xs text-gray-900 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 border" role="alert">
+				<div class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-200 rounded-lg dark:bg-green-800 dark:text-green-600">
+					<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+					<span class="sr-only">Check icon</span>
+				</div>
+				<div class="ml-3 text-sm font-normal">Contato criado com sucesso!</div>
+			</div>
+
+			<%#= link_to 'Ok', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-black border border-gray-700 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
+		</div>
 	</div>
-	<div class="ml-3 text-sm font-normal">Contato criado com sucesso!</div>
 </div>
+ -->
+
+
+
+
+
+
+
+
 <% end %>
 <%= turbo_stream.update "contato_principal-#{@engajado.id}" do %><% end %>
 <%= turbo_stream.update "whatssapp-#{@engajado.id}" do %><%= render partial: "engajamentos/turbo_stream/ts_whatsapp", locals: { engajado: @engajado, pessoa: @engajado.pessoa} %><% end %>

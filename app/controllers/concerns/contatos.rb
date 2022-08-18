@@ -7,7 +7,7 @@ module Contatos
 		if @engajamento.lideranca?(current_usuario)
 			@pessoa = @engajado.pessoa
 			@contato = @pessoa.contatos.new
-			render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/partials/form/contato_novo", locals: { pessoa: @pessoa }))
+			render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/partials/form/contato_novo", locals: { pessoa: @pessoa }))
 		end
 	end
 
@@ -19,18 +19,13 @@ module Contatos
 			if @contato.save
 				@contato = Contato.new
 				format.turbo_stream {
-					render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_sucesso")) 
+					render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_contato_create_sucesso")) 
 					flash[:notice] = "Registro adicionado com sucesso."
 				}
 			else
 				format.turbo_stream { 
-					render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { pessoa: @pessoa })
-					# render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { engajado: @engajado, pessoa: @pessoa, engajamento: @engajamento })
-
+					render turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_contato_create_falha", locals: { pessoa: @pessoa })
 					# render turbo_stream: turbo_stream.update("flow", partial: "shared/ops")
-
-					
-
 				}
 				format.html { redirect_to @engajamento }
 			end

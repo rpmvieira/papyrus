@@ -7,7 +7,8 @@ module Enderecos
 		if @engajamento.lideranca?(current_usuario)
 			@pessoa = @engajado.pessoa
 			@endereco = @pessoa.enderecos.new
-			render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @pessoa }))
+			# render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @pessoa }))
+			render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @pessoa }))
 		end
 	end
 

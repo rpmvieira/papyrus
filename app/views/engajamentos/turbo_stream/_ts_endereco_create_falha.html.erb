@@ -1,7 +1,7 @@
 <% if @engajamento.lideranca?(current_usuario) %>
 
-	<%= turbo_stream.update "flow" do %>
-		<%= render partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @engajado.pessoa} %>
+	<%= turbo_stream.update "modal" do %>
+		<%#= render partial: "engajamentos/partials/form/endereco_novo", locals: { pessoa: @engajado.pessoa} %>
 		<%= turbo_stream.update "flash" do %>
 
 			<% if @endereco.errors.any? %>
@@ -20,6 +20,24 @@
 <% else %>
 -
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
