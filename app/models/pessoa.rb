@@ -15,10 +15,25 @@ class Pessoa < ApplicationRecord
   has_many :contatos, as: :contatavel,:dependent=>:destroy #ver se isso funciona e colocar nos outros
   accepts_nested_attributes_for :contatos, :reject_if => lambda { |a| a[:contato].blank? }, :allow_destroy => true
 
-  validates :nome, :cpf, :mae, :nascimento, presence: { message:"Não pode ficar em branco!" }
-  validates :cpf, uniqueness: { message: "Já existe um registro com esta configuração" }
+  validate :designacao
+  # validates :nome, presence: true, if: Proc.new { |a| a.apelido.blank?} 
+  # validates :apelido, presence: true, if: Proc.new { |a| a.nome.blank? }
+  # if: [Proc.new {|f| f.apelido.blank? }]
+  # { "Celular deve ter 11 digitos. Padrão '(00) 00000-0000'" }
+  # validates :apelido, presence: { "Contato fixo deve ter 10 digitos. Padrão '(00) 0000-0000'", :if => Proc.new {|f| f.nome.blank? } }  
+  validates :mae, :nascimento, presence: { message:"Não pode ficar em branco!" }
+  # validates :cpf, uniqueness: { message: "Já existe um registro com esta configuração" }
 
   enum nacionalidade_id: { 'Brasileira'=> 1, 'Naturalizado'=> 2, 'Estrangeiro'=>3 }
+
+
+
+
+  def designacao
+  	if nome.blank? && apelido.blank?
+  		errors.add(:base, "A denominação de nome ou apelido devem ser preenchidos")
+  	end
+  end
 
   def retorna_principal(colecao)
   	begin

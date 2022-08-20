@@ -1,9 +1,9 @@
 class EngajamentosController < ApplicationController
   before_action :set_engajamento, only: %i[ show edit update destroy ]
 
-  # GET /engajamentos or /engajamentos.json
   def index
     @engajamentos = Engajamento.all
+    # authorize @engajamentos
   end
 
   def show

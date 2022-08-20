@@ -3,9 +3,11 @@ class CreateEngajados < ActiveRecord::Migration[7.0]
     create_table :engajados do |t|
       t.integer :pessoa_id
       t.integer :colaboracao_id
-      # t.integer :engajamento_id
+      t.boolean :lideranca, default: false
+      t.string :grupo_lideranca
+      t.integer :ascendente_id
       t.string :status, default: 'inativo'
-      # t.string :state
+      t.string :observacao
 
       t.timestamps
     end

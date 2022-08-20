@@ -90,23 +90,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 # Validate, generate and format CPF/CNPJ numbers. Include command-line tools.
 gem 'cpf_cnpj', '~> 0.5.0'
 
-# gem 'capistrano', '~> 3.11'
-# gem 'capistrano-rails', '~> 1.4'
-# gem 'capistrano-passenger', '~> 0.2.0'
-# gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
-
-
-# gem "ed25519", ">= 1.2", "< 2.0"
-# gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"
-
-
 gem "bcrypt_pbkdf", require: false
 gem "ed25519", require: false
 
-# gem 'ed25519', '~> 1.2'
-# gem 'bcrypt_pbkdf', '~> 1'
-
-
-# gem "bcrypt_pbkdf", require: false
-# gem "ed25519", require: false
-# gem install 'bcrypt_pbkdf:<2.0' 'ed25519:<2.0'
+# Pundit provides a set of helpers which guide you in leveraging regular Ruby classes and object oriented design patterns
+gem 'pundit', '~> 2.2'

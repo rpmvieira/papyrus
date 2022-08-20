@@ -9,7 +9,7 @@
 
 
 			<div class="flex items-center justify-between w-full p-5 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
-				<p class="text-md text-black-400 hover:text-sky-400"><b><%= pessoa.nome %></b><br><small>Adicionar contato</small></p>
+				<p class="text-md text-black-400 hover:text-sky-400"><b><%= denominacao(pessoa) %></b><br><small>Adicionar contato</small></p>
 			</div>
 			<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
 				<%= form_with(model: @contato, url: engajamento_engajado_contato_create_path(@engajamento,@engajado), data: { turbo_frame: "_top" }) do |form| %>

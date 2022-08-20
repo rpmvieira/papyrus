@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_142251) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,7 +79,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_142251) do
   create_table "engajados", force: :cascade do |t|
     t.integer "pessoa_id"
     t.integer "colaboracao_id"
+    t.boolean "lideranca", default: false
+    t.string "grupo_lideranca"
+    t.integer "ascendente_id"
     t.string "status", default: "inativo"
+    t.string "observacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -110,6 +114,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_142251) do
 
   create_table "etnias", force: :cascade do |t|
     t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "eventos", force: :cascade do |t|
+    t.integer "engajamento_id"
+    t.integer "responsavel_id"
+    t.string "nome"
+    t.string "descricao"
+    t.string "inicio"
+    t.string "termino"
+    t.string "local"
+    t.string "status", default: "criado"
+    t.string "observacao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "liderancas", force: :cascade do |t|
+    t.integer "engajamento_id"
+    t.integer "lideranca_id"
+    t.string "nome"
+    t.string "descricao"
+    t.string "status", default: "criado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -157,6 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_142251) do
 
   create_table "pessoas", force: :cascade do |t|
     t.string "nome"
+    t.string "apelido"
     t.string "cpf"
     t.string "mae"
     t.date "nascimento"

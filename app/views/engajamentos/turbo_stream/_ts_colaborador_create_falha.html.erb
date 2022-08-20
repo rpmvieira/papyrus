@@ -19,14 +19,14 @@
 				<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 				<div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
 
-					<%= render partial: "engajamentos/partials/form/engajado_novo" %>
+					<%= render partial: "engajamentos/partials/form/colaborador_novo" %>
 					<%= turbo_stream.update "flash" do %>
 					<% if @pessoa.errors.any? %>
 					<div id="error_explanation" class="bg-red-100 rounded-md p-4 mb-4">
-						<h2><%#= pluralize(@pessoa.errors.count, "#{ "erro" if pluralize(@pessoa.errors.count == 1} #{ "erros" if pluralize(@pessoa.errors.count >= 2}") %><b>Impossível salvar o registro:</b></h2>
+						<h2><%#= pluralize(@pessoa.errors.count, "erros" ) %><b>Impossível salvar o registro:</b></h2>
 						<ul>
 							<% @pessoa.errors.each do |error| %>
-							<li><%= error.full_message %></li>
+							<li><%= error.full_message.downcase %></li>
 							<% end %>
 						</ul>
 					</div>

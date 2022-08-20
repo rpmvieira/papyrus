@@ -13,6 +13,9 @@ class Engajado < ApplicationRecord
 	def ativar;update_attribute(:status,"ativo");end
 	def inativar;update_attribute(:status,"inativo");end
 
-
+	def lideranca?
+		return true if lideranca == true
+		return false if lideranca == false
+	end
 
 end

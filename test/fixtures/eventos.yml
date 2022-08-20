@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  engajamento_id: 1
+  responsavel_id: 1
+  nome: MyString
+  descricao: MyString
+  inicio: MyString
+  termino: MyString
+  local: MyString
+  status: MyString
+
+two:
+  engajamento_id: 1
+  responsavel_id: 1
+  nome: MyString
+  descricao: MyString
+  inicio: MyString
+  termino: MyString
+  local: MyString
+  status: MyString

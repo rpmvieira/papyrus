@@ -49,4 +49,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular "país", "países"
 	inflect.irregular "campus", "campi"
 	inflect.irregular "órgão", "órgãos"
+
+	# verbo
+	inflect.irregular "impede", "impedem"
 end

@@ -1,42 +1,32 @@
-<%= form_with(model: mensagem, class: "contents") do |form| %>
-  <% if mensagem.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(mensagem.errors.count, "error") %> prohibited this mensagem from being saved:</h2>
+<%= form_with(model: mensagem, builder: AaBuilder) do |form| %>
 
-      <ul>
-        <% mensagem.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="my-5">
-    <%= form.label :destinatario_id %>
-    <%= form.number_field :destinatario_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
 
-  <div class="my-5">
-    <%= form.label :destinatario_type %>
-    <%= form.text_field :destinatario_type, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
 
-  <div class="my-5">
-    <%= form.label :conteudo %>
-    <%= form.text_field :conteudo, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+<div class="relative z-0 mb-6 w-full group">
+  <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+  <!-- <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label> -->
+  <%= form_label("conteudo") %>
+  <%= form.label "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" %>
+</div>
 
-  <div class="my-5">
-    <%= form.label :entregue %>
-    <%= form.check_box :entregue, class: "block mt-2 h-5 w-5" %>
-  </div>
+<hr>
 
-  <div class="my-5">
-    <%= form.label :observacao %>
-    <%= form.text_field :observacao, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+ddsdsd
+<%= form.text_field :conteudo %>
+
+<%= form.label :conteudo %>
+<hr>
+nnnnnnnnnnnn
 <% end %>
+
+
+
+<%= form_with(model: mensagem, class: "contents") do |form| %>
+<div class="my-5">
+  <%= form.text_field :conteudo, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+</div>
+<% end %>
+
+

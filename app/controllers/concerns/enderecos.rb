@@ -20,12 +20,12 @@ module Enderecos
 			if @endereco.save
 				@endereco = Endereco.new
 				format.turbo_stream {
-					render( turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_endereco_create_sucesso")) 
+					render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_endereco_create_sucesso")) 
 					flash[:notice] = "Registro adicionado com sucesso."
 				}
 			else
 				format.turbo_stream { 
-					render turbo_stream: turbo_stream.update("flow", partial: "engajamentos/turbo_stream/ts_endereco_create_falha", locals: { engajado: @engajado, pessoa: @pessoa, engajamento: @engajamento, engajados: @engajados })
+					render turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_endereco_create_falha", locals: { engajado: @engajado, pessoa: @pessoa, engajamento: @engajamento, engajados: @engajados })
 				}
 				format.html { redirect_to @engajamento }
 			end
