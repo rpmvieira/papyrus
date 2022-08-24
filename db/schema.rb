@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_19_132801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
     t.integer "colaboracao_id"
     t.boolean "lideranca", default: false
     t.string "grupo_lideranca"
+    t.integer "vinculacao_id"
     t.integer "ascendente_id"
     t.string "status", default: "inativo"
     t.string "observacao"
@@ -91,7 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
   create_table "engajamentos", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
-    t.integer "natureza_id", default: 1
+    t.integer "natureza_id"
     t.integer "responsavel_id"
     t.string "status", default: "criado"
     t.datetime "created_at", null: false
@@ -123,21 +124,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
     t.integer "responsavel_id"
     t.string "nome"
     t.string "descricao"
-    t.string "inicio"
-    t.string "termino"
+    t.datetime "inicio"
+    t.datetime "termino"
     t.string "local"
+    t.integer "publico_previsao"
+    t.integer "publico_confirmado"
     t.string "status", default: "criado"
     t.string "observacao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "liderancas", force: :cascade do |t|
-    t.integer "engajamento_id"
-    t.integer "lideranca_id"
-    t.string "nome"
-    t.string "descricao"
-    t.string "status", default: "criado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -170,15 +163,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
   create_table "naturezas", force: :cascade do |t|
     t.string "nome"
     t.string "marcador"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "participantes", force: :cascade do |t|
-    t.integer "participante_id"
-    t.integer "colaboracao_id"
-    t.integer "engajamento_id"
-    t.string "status", default: "criado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -258,6 +242,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_135854) do
 
   create_table "t_sanguineas", force: :cascade do |t|
     t.string "nome"
+    t.string "tipo"
     t.string "grupo"
     t.string "fator_rh"
     t.string "verdadeiro", default: "f"

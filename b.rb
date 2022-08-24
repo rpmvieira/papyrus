@@ -104,7 +104,8 @@ Pessoa.find_or_create_by!(:nome=>'Ruan Pablo de Matos Vieira',:cpf=>'71225285291
 Pessoa.find_or_create_by!(:nome=>'Sandra Mara Nunes da Silva',:cpf=>'03491622719',:mae=>'Mamãe Nunes da Silva',:nascimento=>'01/01/1980')
 
 Usuario.create!(password: '123456', password_confirmation: '123456', email: '1@test.com',:pessoa_id=>1)
-Usuario.create!(password: '123456', password_confirmation: '123456', email: 'sandra@test.com',:pessoa_id=>2)
+Usuario.create!(password: '123456', password_confirmation: '123456', email: 'sandramcp32@gmail.com',:pessoa_id=>2)
+
 
 e1 = Endereco.find_or_create_by!(:enderecavel_id=>1,:enderecavel_type=>'Pessoa',:logradouro=>'Av Santana',:bairro=>'Castanheira',:numero=>'172',:cep=>'68900000',:municipio_id=>Municipio.find_by_nome('Amapa').id,:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
 
@@ -117,3 +118,18 @@ documento2 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type
 documento3 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type=>'Pessoa',:t_documento_id=>3,:numero=>'00003',:serie=>'644',:uf_id=>3,:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
 documento4 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type=>'Pessoa',:t_documento_id=>5,:numero=>'98765431',:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
 documento5 = Documento.find_or_create_by!(:documentavel_id=>1,:documentavel_type=>'Pessoa',:t_documento_id=>9,:numero=>'98765431012345',:verificacao=>true,:verificacao_data=>DateTime.now,:verificacao_responsavel_id=>1)
+
+
+
+
+Natureza.find_or_create_by!(:nome=>'Sistema',:marcador=>'Sistema')
+Natureza.find_or_create_by!(:nome=>'Eleição Oficial',:marcador=>'Eleição')
+TColaboracao.find_or_create_by!(:nome=>'GodMode',:natureza_id=>Natureza.find_by_nome('Sistema').id,:descricao=>'-')
+TColaboracao.find_or_create_by!(:nome=>'ArchAngelMode',:natureza_id=>Natureza.find_by_nome('Sistema').id,:descricao=>'-')
+TColaboracao.find_or_create_by!(:nome=>'Coordenação',:natureza_id=>Natureza.find_by_nome('Eleição Oficial').id,:descricao=>'-')
+TColaboracao.find_or_create_by!(:nome=>'Coordenação Geral',:natureza_id=>Natureza.find_by_nome('Eleição Oficial').id,:descricao=>'-')
+Engajamento.find_or_create_by!(:nome=>'Eleições 2022',:descricao=>'Controle de Engajamento',:natureza_id=>1,:responsavel_id=>Pessoa.first.id)
+
+
+c1 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.second.id,:engajamento_id=>1,:t_colaboracao_id=>TColaboracao.find_by_nome('Coordenação').id,:status=>'ativo')
+c3 = Colaboracao.find_or_create_by!(:colaborador_id=>Pessoa.first.id,:engajamento_id=>1,:t_colaboracao_id=>1,:status=>'ativo')

@@ -8,6 +8,14 @@ module ApplicationHelper
 		end
 	end
 
+	def string(string=nil)
+		if string.present?
+			string
+		else
+			"-"
+		end
+	end
+
 	def abre_modal
 		return "<div class='fixed z-10 inset-0 overflow-y-auto' aria-labelledby='modal-title' role='dialog' aria-modal='true'>
 		<div class='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
@@ -28,6 +36,10 @@ module ApplicationHelper
 		return "Liderança" if string == "lideranca"
 		return "Colaborador" if string == "colaborador"
 		return string 
+	end
+
+	def classe_menu
+		return "inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700".html_safe
 	end
 
 end

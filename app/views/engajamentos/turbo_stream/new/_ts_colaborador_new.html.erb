@@ -1,0 +1,5 @@
+<%= turbo_stream.update "modal" do %>
+<%= abre_modal %>
+<%= render partial: "engajamentos/partials/form/colaborador_new", locals: { engajado: @engajado } %>
+<%= fecha_modal %>
+<% end %>

@@ -2,7 +2,7 @@
 	<p class="text-md text-black-400 hover:text-sky-400"><b>Liderança</b><br><small>Novo registro</small>
 	</div>
 	<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
-		<%= form_with(model: @pessoa, url: lideranca_create_engajamento_engajados_path(@engajamento), data: { turbo_frame: "_top" }) do |form| %>
+		<%= form_with(model: @pessoa, url: engajamento_lideranca_create_path(@engajamento), data: { turbo_frame: "_top" }) do |form| %>
 		<div class="" id="flash"></div>
 
 		<div class="p-2">

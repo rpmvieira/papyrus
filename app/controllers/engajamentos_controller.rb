@@ -2,30 +2,28 @@ class EngajamentosController < ApplicationController
   before_action :set_engajamento, only: %i[ show edit update destroy ]
 
   def index
+    authorize Engajamento
     @engajamentos = Engajamento.all
-    # authorize @engajamentos
   end
 
   def show
+    authorize @engajamento
+
     if !@engajamento.responsavel?(current_usuario)
       @colaboracoes = @engajamento.colaboracoes
       @engajados = @engajamento.engajados
+      @eventos = @engajamento.eventos#.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario))
     elsif @engajamento.colaboracoes.deste_colaborador(current_usuario)
       @colaboracoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
       @engajados = @engajamento.engajados.deste_colaborador(current_usuario)
+      @eventos = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).order(inicio: :asc)
     end
   end
 
-  # GET /engajamentos/new
-  def new
-    @engajamento = Engajamento.new
-  end
+  def new;@engajamento = Engajamento.new;end
 
-  # GET /engajamentos/1/edit
-  def edit
-  end
+  def edit;end
 
-  # POST /engajamentos or /engajamentos.json
   def create
     @engajamento = Engajamento.new(engajamento_params)
 
@@ -40,7 +38,6 @@ class EngajamentosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /engajamentos/1 or /engajamentos/1.json
   def update
     respond_to do |format|
       if @engajamento.update(engajamento_params)
@@ -53,7 +50,6 @@ class EngajamentosController < ApplicationController
     end
   end
 
-  # DELETE /engajamentos/1 or /engajamentos/1.json
   def destroy
     @engajamento.destroy
 
@@ -63,14 +59,50 @@ class EngajamentosController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_engajamento
-      @engajamento = Engajamento.find(params[:id])
-    end
+  def lideranca_new
+    @engajamento = Engajamento.find(params[:engajamento_id])
+    authorize @engajamento
+    @tipo = params[:tipo]
+    @pessoa = Pessoa.new
+    render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/new/ts_lideranca_new", locals: { pessoa: @pessoa }))
+  end
 
-    # Only allow a list of trusted parameters through.
-    def engajamento_params
-      params.require(:engajamento).permit(:engajado_id, :engajamento_id, :engajador_id)
+  def lideranca_create
+    @engajamento = Engajamento.find(params[:engajamento_id])
+
+    @colaboracao = @engajamento.coordenador?(current_usuario)
+    @pessoa = Pessoa.new(pessoa_params)
+
+    respond_to do |format|
+      @engajados =  @engajamento.engajados.deste_colaborador(current_usuario).order(created_at: :desc)
+      if @pessoa.save
+        @engajado = @pessoa.engajados.create(colaboracao_id: @colaboracao.id, lideranca: true, grupo_lideranca: view_context.denominacao(@pessoa), status: "ativo" )
+        @pessoa = Pessoa.new
+        format.turbo_stream {
+          render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/create/ts_lideranca_create_sucesso", locals: { engajados: @engajados} ))
+          flash[:notice] = "Registro adicionado com sucesso."
+        }
+      else
+        format.turbo_stream { 
+          render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/create/ts_lideranca_create_falha")) 
+        }
+        format.html { redirect_to @engajamento }
+      end
     end
   end
+
+
+
+  private
+  def set_engajamento
+    @engajamento = Engajamento.find(params[:id])
+  end
+
+  def engajamento_params
+    params.require(:engajamento).permit(:engajado_id, :engajamento_id, :engajador_id)
+  end
+
+  def pessoa_params
+    params.require(:pessoa).permit(:nome, :apelido, :mae, :nascimento, :status )
+  end
+end

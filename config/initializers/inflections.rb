@@ -52,4 +52,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 
 	# verbo
 	inflect.irregular "impede", "impedem"
+	inflect.irregular "colaborador", "colaboradores"
+	# inflect.irregular "colaboradores", "colaborador"
 end

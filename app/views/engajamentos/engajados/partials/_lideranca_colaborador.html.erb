@@ -1,0 +1,9 @@
+<br>
+<hr class="py-1">
+<div class="text-sm text-gray-900 font-light px-2 py-2">
+	<p class="py-1"><b>Nome:</b> <%= denominacao(engajado.pessoa) %></p>
+	<% if engajado.lideranca? %><p class="py-1"><b>Grupo:</b> <%= engajado.grupo_lideranca %></p><% end %>
+	<p class="py-1"><b>Data de nascimento:</b> <%= string(engajado.pessoa.nascimento.strftime("%d/%m/%Y")) %></p>
+	<p class="py-1"><b>Mãe:</b> <%= string(engajado.pessoa.mae) %></p>
+</div>
+<hr class="py-3">

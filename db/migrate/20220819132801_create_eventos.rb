@@ -5,9 +5,11 @@ class CreateEventos < ActiveRecord::Migration[7.0]
       t.integer :responsavel_id
       t.string :nome
       t.string :descricao
-      t.string :inicio
-      t.string :termino
+      t.datetime :inicio
+      t.datetime :termino
       t.string :local
+      t.integer :publico_previsao
+      t.integer :publico_confirmado
       t.string :status, default: 'criado'
       t.string :observacao
 

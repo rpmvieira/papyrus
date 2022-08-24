@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
-	before_action :authenticate_usuario!
 	include Pundit::Authorization
 
+	before_action :authenticate_usuario!
+	
 
+  def pundit_user   
+    current_usuario  
+  end
   # def pundit_usuario
   #   header = request.headers['Authorization']
   #   header = header.split(' ').last if header

@@ -1,53 +1,65 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
+  before_action :set_engajamento, only: %i[ evento_new evento_create eventos_dia show edit update] #show edit update destroy ]
 
-  # GET /eventos or /eventos.json
   def index
     @eventos = Evento.all
   end
 
-  # GET /eventos/1 or /eventos/1.json
   def show
   end
 
-  # GET /eventos/new
-  def new
-    @evento = Evento.new
+  def evento_new
+    @evento = @engajamento.eventos.new
+    authorize @evento
+    render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/new/ts_evento_new" ))
   end
 
-  # GET /eventos/1/edit
   def edit
+    render( turbo_stream: turbo_stream.update("modal", partial: "eventos/form_update", locals: { evento: @evento } ))
   end
 
-  # POST /eventos or /eventos.json
-  def create
-    @evento = Evento.new(evento_params)
-
+  def evento_create
+    @colaboracao = @engajamento.coordenador?(current_usuario)
+    @evento = @engajamento.eventos.new(evento_params)
+    
     respond_to do |format|
       if @evento.save
-        format.html { redirect_to evento_url(@evento), notice: "Evento was successfully created." }
-        format.json { render :show, status: :created, location: @evento }
+        @evento_salvo = @evento
+        @eventos = @engajamento.eventos.order(inicio: :asc)
+        @evento = @engajamento.eventos.new
+        format.turbo_stream {
+          render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/create/ts_evento_create_sucesso", locals: { evento: @evento_salvo } ))
+        }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @evento.errors, status: :unprocessable_entity }
+        format.turbo_stream { 
+          render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/create/ts_evento_create_falha")) 
+        }
       end
     end
   end
 
-  # PATCH/PUT /eventos/1 or /eventos/1.json
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        format.html { redirect_to evento_url(@evento), notice: "Evento was successfully updated." }
-        format.json { render :show, status: :ok, location: @evento }
+        @eventos = @engajamento.eventos.order(inicio: :asc)
+        format.turbo_stream { render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/crud/ts_update_sucesso")) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @evento.errors, status: :unprocessable_entity }
+        format.turbo_stream { render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/crud/ts_update_falha")) }
       end
     end
   end
 
-  # DELETE /eventos/1 or /eventos/1.json
+  def eventos_dia
+    if params[:evento_dia][:referencia].present?
+      @referencia = params[:evento_dia][:referencia]
+      @eventos_dia = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).inicio_on_day(@referencia)
+      render( turbo_stream: turbo_stream.update("modal", partial: "eventos/turbo_stream/conteudo/ts_evento_dia", locals: { eventos_dia: @eventos_dia, referencia: @referencia })) 
+    else
+      puts "ops"
+    end
+  end
+
   def destroy
     @evento.destroy
 
@@ -58,13 +70,7 @@ class EventosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evento
-      @evento = Evento.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def evento_params
-      params.require(:evento).permit(:engajamento_id, :responsavel_id, :nome, :descricao, :inicio, :termino, :local, :status)
-    end
+  def set_evento;@evento = Evento.find(params[:evento_id]);end
+  def evento_params;params.require(:evento).permit(:engajamento_id, :responsavel_id, :nome, :descricao, :inicio, :termino, :local, :publico_previsao, :publico_confirmado, :status);end
+  def set_engajamento;@engajamento = Engajamento.find(params[:engajamento_id]);end
 end

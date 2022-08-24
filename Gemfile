@@ -95,3 +95,9 @@ gem "ed25519", require: false
 
 # Pundit provides a set of helpers which guide you in leveraging regular Ruby classes and object oriented design patterns
 gem 'pundit', '~> 2.2'
+
+# Simple Calendar is designed to do one thing really really well: render a calendar.
+gem "simple_calendar", "~> 2.4"
+
+# Date/time scopes for ActiveRecord models you always missed! With proper time-zones support.
+gem "datetime-scopes"
