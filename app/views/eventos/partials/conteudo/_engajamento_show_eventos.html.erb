@@ -57,63 +57,47 @@
 				<% date_range.each_slice(7) do |week| %>
 				<tr class="text-center h-20">
 					<% week.each do |day| %>
-					<!-- <td> -->
-						<td class=" h-20 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease ">
-							<div class="flex flex-col relative h-20 p-1 mx-auto w-full mx-auto overflow-hidden inline-block align-middle rounded border border-gray-50 border-4 hover:bg-gray-100 hover:border-green-500">
-								<div class=" ">
+					<td class=" h-20 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease ">
+						<div class="flex flex-col relative h-20 p-1 mx-auto w-full mx-auto overflow-hidden inline-block align-middle rounded border border-gray-50 border-4 hover:bg-gray-100 hover:border-green-500">
+							<div class=" ">
 
-									<div class="inline-flex relative w-full text-sm font-medium ">
-										<div class="absolute inset-0 -mt-3">
+								<div class="inline-flex relative w-full text-sm font-medium ">
+									<div class="absolute inset-0 -mt-3">
 
-											<% if day.month == Date.today.month && day.day == Date.today.day %>
-											<span class="text-green-500 text-xl hover:text-green-400"><b><%= day.day %></b></span>
-											<% elsif day.month == Date.today.month %>
-											<span class="text-gray-600 text-xl hover:text-green-400"><b><%= day.day %></b></span>
-											<% else %>
-											<span class="text-gray-400 text-xl hover:text-green-400"><%= day.day %></span>
-											<% end %>
-										</div>
-									</div>
-
-
-
-									<% @eventos.inicio_on_day(day).all.each do |e| %>
-									<span class="text-sm text-sky-700"><b><%= @eventos.inicio_on_day(day).count %></b></span>
-									<div class="-ml-2 -mt-14 mb-20">
-										<span class="flex h-4 w-4">
-											<span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-green-400 opacity-75"></span>
-											<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 animate-pulse flex space-x-1"></span>
-										</span>
-									</div>
-									<div class=" py-2">
-
-										<%= form_for :evento_dia, url: eventos_dia_engajamento_eventos_path(@engajamento), data: { turbo_frame: "_top" } do |form| %>
-										<%= form.hidden_field :referencia, value: e.inicio %>
-										<%= form.submit "", class: "absolute inset-0 h-20 w-full hover:bg-green-100 opacity-60" %>
+										<% if day.month == Date.today.month && day.day == Date.today.day %>
+										<span class="text-green-500 text-xl hover:text-green-400"><b><%= day.day %></b></span>
+										<% elsif day.month == Date.today.month %>
+										<span class="text-gray-600 text-xl hover:text-green-400"><b><%= day.day %></b></span>
+										<% else %>
+										<span class="text-gray-400 text-xl hover:text-green-400"><%= day.day %></span>
 										<% end %>
-
-
-
-										<%#= button_to eventos_dia_engajamento_eventos_path(@engajamento), data: { turbo_frame: "modal" }, class: "absolute inset-0 h-20 w-full border border-blue-700" do %><%# end %>
-										<span class="text-sm text-sky-700 -mt-30"><b><%= @eventos.inicio_on_day(day).count %></b></span>
-
-
-										<!-- </div> -->
 									</div>
-
-
-
-									<!-- <div class="-ml-5 -mt-12 animate-ping absolute inline-flex h-10 w-10 rounded-full bg-green-400 opacity-75"></div> -->
-									<% end %>
-
 								</div>
+								<% @eventos.inicio_on_day(day).all.each do |e| %>
+								<span class="text-sm text-sky-700"><b><%= @eventos.inicio_on_day(day).count %></b></span>
+								<div class="-ml-2 -mt-14 mb-20">
+									<span class="flex h-4 w-4">
+										<span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-green-400 opacity-75"></span>
+										<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 animate-pulse flex space-x-1"></span>
+									</span>
+								</div>
+								<div class=" py-2">
+									<%= form_for :evento_dia, url: eventos_dia_engajamento_eventos_path(@engajamento), data: { turbo_frame: "_top" } do |form| %>
+									<%= form.hidden_field :referencia, value: e.inicio %>
+									<%= form.submit "", class: "absolute inset-0 h-20 w-full hover:bg-green-100 opacity-60" %>
+									<% end %>
+									<span class="text-sm text-sky-700 -mt-30"><b><%= @eventos.inicio_on_day(day).count %></b></span>
+								</div>
+								<% end %>
 
-							</td>
-							<% end %>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
-		</div>
+							</div>
+						</div>
+					</td>
+					<% end %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
 
