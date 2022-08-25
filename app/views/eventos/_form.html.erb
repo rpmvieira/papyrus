@@ -6,31 +6,31 @@
   <div class="" id="flash"></div>
   <div class="p-2">
     <%= form.label :nome, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-    <%= form.text_field :nome, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: Faker::Movie.title %>
+    <%= form.text_field :nome, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
   <div class="p-2">
     <%= form.label :descricao, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-    <%= form.text_field :descricao, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Descrição do evento", value: 'Uma descricao aqui' %>
+    <%= form.text_field :descricao, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Descrição do evento" %>
   </div>
   <div class="grid grid-cols-4">
     <div class="p-2 col-span-2">
       <%= form.label 'Início', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-      <%= form.datetime_local_field :inicio, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: "2022-08-22T10:00:00" %>
+      <%= form.datetime_local_field :inicio, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
     </div>
     <div class="p-2 col-span-2">
       <%= form.label 'Término', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-      <%= form.datetime_local_field :termino, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: "2022-08-22T10:30:00" %>
+      <%= form.datetime_local_field :termino, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
     </div>
   </div>
 
 <div class="grid grid-cols-4 border-b">
   <div class="p-2 col-span-1">
     <%= form.label 'Público', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-    <%= form.number_field :publico_previsao, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: 5 %>
+    <%= form.number_field :publico_previsao, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
   <div class="p-2 col-span-3 ">
     <%= form.label 'local', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-    <%= form.text_field :local, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Local do acontecimento", value: Faker::Address.city %>
+    <%= form.text_field :local, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Local do acontecimento" %>
   </div>
 </div>
 

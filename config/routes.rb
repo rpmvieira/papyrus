@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   resources :mensagens
   resources :engajamentos do
+    post :show
     post :lideranca_new#, as: :lideranca_new
     post :lideranca_create#, as: :lideranca_create, :on => :collection
     resources :engajados, module: :engajamentos do
+      post :index, :on => :collection
       post :show
 
       post :colaborador_new#
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
       post :endereco_create
     end
     resources :eventos do#, module: :engajamentos do
+      post :index, :on => :collection
       post :evento_new, as: :evento_new, :on => :collection
       post :evento_create, as: :evento_create, :on => :collection
       post :show
@@ -28,7 +31,7 @@ Rails.application.routes.draw do
       post :eventos_dia, :on => :collection
     end
   end
-  devise_for :usuarios
+  # devise_for :usuarios
   resources :pessoas do
     resources :contatos, module: :pessoas do
       post :create#, :as => :usuario_nova_busca
@@ -39,4 +42,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "engajamentos#index"
+
+
+
+
+  devise_scope :usuario do
+    # Redirests signing out usuarios back to sign-in
+    get "usuarios", to: "devise/sessions#new"
+    get 'usuarios/sign_out' => 'devise/sessions#destroy' 
+  end
+  devise_for :usuarios
+
 end

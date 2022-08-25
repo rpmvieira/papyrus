@@ -9,6 +9,7 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+  <%#= javascript_importmap_tags("application", shim: false) %>
 </head>
 
 <body>
@@ -16,7 +17,9 @@
     <%= render 'layouts/navbar' %>
   </header>
   <main class="container mx-auto mt-28 px-5 flex">
-    <%= render partial: "shared/flash" %>
+
+
+    <%#= render partial: "shared/flash" %>
     <%= yield %>
     <%= turbo_frame_tag "modal" %>
   </main>

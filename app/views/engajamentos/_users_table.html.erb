@@ -1,0 +1,10 @@
+<%= turbo_frame_tag  'search' do %>
+  <table class="table">
+    <% pesquisados.each do |pesquisado| %>
+      <tr>
+        <td><%= pesquisado.nome %></td>
+        <td><%#= pesquisado.email %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

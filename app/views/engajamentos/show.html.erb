@@ -5,77 +5,28 @@
 
   <div id="engajamento" class="min-w-full">
     <div class="mb-4 border-b border-black-200 dark:border-gray-700">
-      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
-        <li class="mr-2" role="presentation">
-          <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Início</button>
-        </li>
+      <div class="mt-6 mb-4 inline-flex rounded-md shadow-sm" role="group">
+        <%= button_to engajamento_show_path(@engajamento), class:"inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent rounded-l-lg border border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700" do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>Início<% end %>
+
+        <%= button_to engajamento_eventos_path(@engajamento), class:"inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700" do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" /></svg>Eventos<% end %>
 
 
 
-
-        <% if @engajamento.colaboracoes.present? %>
-        <% if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
-        <li class="mr-2" role="presentation">
-          <button class="<%= classe_menu %>" id="minhas_colaboracoes-tab" data-tabs-target="#minhas_colaboracoes" type="button" role="tab" aria-controls="minhas_colaboracoes" aria-selected="false">Minhas Colaborações</button>
-        </li>
-        <% end %>
-        <% end %>
-
-        <% if @engajamento.coordenadoria?(current_usuario)%>
-        <li class="mr-2" role="presentation">
-          <button class="<%= classe_menu %>" id="eventos-tab" data-tabs-target="#eventos" type="button" role="tab" aria-controls="eventos" aria-selected="false">Eventos</button>
-        </li>
-        <% end %>
+          <button type="button" class="text-gray-500 bg-gray-200 border border-black dark:bg-gray-500 cursor-not-allowed font-medium text-sm px-4 py-2 text-center" disabled="">Adesivações</button>
 
 
-        <!-- <li class="mr-2" role="presentation">
-          <button class="<%= classe_menu %>" id="opcoes-tab" data-tabs-target="#opcoes" type="button" role="tab" aria-controls="opcoes" aria-selected="false">Opções</button>
-        </li> -->
-      </ul>
-    </div>
-    <!-- <div class="grid grid-cols-3 gap-4"> -->
-      <div class="flex flex-col col-span-2">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full sm:px-6 lg:px-8">
-            <div id="myTabContent">
-              <div class="" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="" id="show_inicio">
-                  <%= render partial: "engajamentos/partials/conteudo/show_inicio" %>
-                </div>
-              </div>
-
-              <div id="liderancas_conteudo"><%#= render partial: "engajamentos/partials/conteudo/liderancas_conteudo" %></div>
-
-              <% if @engajamento.coordenadoria?(current_usuario)%>
-              <div class="hidden" id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
-                <div id="show_eventos">
-                  <%= render "eventos/partials/conteudo/engajamento_show_eventos" %>
-                </div>  
-              </div>
-              <% end %>
-
-              <% if @engajamento.colaboracoes.present? %>
-              <% if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
-              <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="minhas_colaboracoes" role="tabpanel" aria-labelledby="minhas_colaboracoes-tab">
-                <%#= render "engajamentos/partials/minhas_colaboracoes" %>
-              </div>
-              <% end %>
-              <% end %>
-
-
-              <!-- <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="opcoes" role="tabpanel" aria-labelledby="opcoes-tab"></div> -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-full mx-auto">
-        <div id="flow">
-
-
-
+          <%= button_to engajamento_engajados_path(@engajamento), class:"inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent rounded-r-md border border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700" do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
+          </svg>Colaboradores<% end %>
 
         </div>
       </div>
-      <!-- </div> -->
     </div>
+    <div>
+      <div id="show_inicio">
+        <%= render partial: "engajamentos/partials/conteudo/show_inicio" %>
+      </div>
+    </div>
+
   </div>

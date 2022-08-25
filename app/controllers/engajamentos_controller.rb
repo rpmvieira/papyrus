@@ -9,13 +9,13 @@ class EngajamentosController < ApplicationController
   def show
     authorize @engajamento
 
-    if !@engajamento.responsavel?(current_usuario)
+    if @engajamento.responsavel?(current_usuario)
       @colaboracoes = @engajamento.colaboracoes
-      @engajados = @engajamento.engajados
+      @engajados = @engajamento.engajados.liderancas
       @eventos = @engajamento.eventos#.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario))
     elsif @engajamento.colaboracoes.deste_colaborador(current_usuario)
       @colaboracoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
-      @engajados = @engajamento.engajados.deste_colaborador(current_usuario)
+      @engajados = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
       @eventos = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).order(inicio: :asc)
     end
   end
@@ -74,7 +74,7 @@ class EngajamentosController < ApplicationController
     @pessoa = Pessoa.new(pessoa_params)
 
     respond_to do |format|
-      @engajados =  @engajamento.engajados.deste_colaborador(current_usuario).order(created_at: :desc)
+      @engajados =  @engajamento.engajados.deste_colaborador(current_usuario).liderancas.order(created_at: :desc)
       if @pessoa.save
         @engajado = @pessoa.engajados.create(colaboracao_id: @colaboracao.id, lideranca: true, grupo_lideranca: view_context.denominacao(@pessoa), status: "ativo" )
         @pessoa = Pessoa.new

@@ -1,19 +1,13 @@
-	<% if @eventos.present? %>
-	<% start_date = params.fetch(:start_date, Date.today).to_date %>
-	<% date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).to_a %>
-<!-- <div class='fixed z-10 inset-0 overflow-y-auto' aria-labelledby='modal-title' role='dialog' aria-modal='true'>
-	<div class='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
-		<div class='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' aria-hidden='true'></div>
-		<span class='hidden sm:inline-block sm:align-middle sm:h-screen' aria-hidden='true'>&#8203;</span>
-		<div class='inline-block align-center bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6'>
-			oio
-			<%= link_to 'Cancelar', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-black border border-gray-700 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
-		</div>
-	</div>
-</div> -->
+<%= turbo_stream.update "show_inicio" do %>
+
+<% start_date = params.fetch(:start_date, Date.today).to_date %>
+<% date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).to_a %>
+
 <div class="inline-flex items-center text-base font-sm font-semibold text-gray-900 dark:text-white py-1">
 	<% if @eventos.present? %>
 	<%= pluralize(@eventos.inicio_on_month(DateTime.now).count, "registro", locale: 'pt-BR') %> neste mês, sendo <%= @eventos.count %> no total.
+	<% else %>
+	Nenhum evento cadastrado ainda.
 	<% end %>
 </div>
 
@@ -74,6 +68,7 @@
 										<% end %>
 									</div>
 								</div>
+
 								<% @eventos.inicio_on_day(day).all.each do |e| %>
 								<span class="text-sm text-sky-700"><b><%= @eventos.inicio_on_day(day).count %></b></span>
 								<div class="-ml-2 -mt-14 mb-20">
@@ -101,7 +96,4 @@
 		</table>
 	</div>
 </div>
-
-<% else %>
--
-<% end %>
+<% end %>	

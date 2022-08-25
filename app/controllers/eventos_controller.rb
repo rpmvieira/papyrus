@@ -1,9 +1,11 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
-  before_action :set_engajamento, only: %i[ evento_new evento_create eventos_dia show edit update] #show edit update destroy ]
+  before_action :set_engajamento, only: %i[ index evento_new evento_create eventos_dia show edit update] #show edit update destroy ]
 
   def index
-    @eventos = Evento.all
+    puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
+    @eventos = @engajamento.eventos.all
+    render( turbo_stream: turbo_stream.update("show_inicio", partial: "eventos/partials/conteudo/index" ))
   end
 
   def show

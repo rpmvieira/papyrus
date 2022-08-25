@@ -4,13 +4,17 @@ class Engajamentos::EngajadosController < ApplicationController
 	include ActionView::RecordIdentifier
 	include RecordHelper
 	
-	before_action :set_engajamento, only: %i[ show contato_novo contato_create endereco_novo endereco_create new create engajado_new lideranca_create colaborador_new colaborador_create]
+	before_action :set_engajamento, only: %i[ index show contato_novo contato_create endereco_novo endereco_create new create engajado_new lideranca_create colaborador_new colaborador_create]
 	before_action :set_engajado, only: %i[ show contato_novo contato_create endereco_novo endereco_create colaborador_new colaborador_create] # edit update destroy
 	# before_action :set_pessoa, only: %i[ ]
 
+
+	def index
+		@engajados = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
+		render( turbo_stream: turbo_stream.update("show_inicio", partial: "engajamentos/engajados/partials/conteudo/index_engajado" ))
+	end
+
 	def show;render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/engajados/show_engajado", locals: { engajado: @engajado }));end
-
-
 
 
 	def colaborador_new
@@ -24,7 +28,7 @@ class Engajamentos::EngajadosController < ApplicationController
 		@pessoa = Pessoa.new(pessoa_params)
 
 		respond_to do |format|
-			@engajados =  @engajamento.engajados.deste_colaborador(current_usuario).order(created_at: :desc)
+			@engajados =  @engajamento.engajados.deste_colaborador(current_usuario).liderancas.order(created_at: :desc)
 			if @pessoa.save
 				@engajado =  @pessoa.engajados.create(:colaboracao_id=>@colaboracao.id,:ascendente_id=>@engajado.id,:status=>'ativo')
 				@pessoa = Pessoa.new
