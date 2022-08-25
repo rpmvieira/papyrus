@@ -5,7 +5,7 @@ class Evento < ApplicationRecord
 	has_many :participantes, :class_name=>"Engajado"
 
 	validates :engajamento_id, :responsavel_id,:nome, :inicio, :termino, :local, presence: { message:"Não pode ficar em branco!" }
-	validate :inicio_menor_que_termino
+	validate :inicio_menor_que_termino, :aa
 
 	datetime_scopes :inicio
 	scope :deste_responsavel_id,lambda{|responsavel_id| where("eventos.responsavel_id = ?",responsavel_id)}
@@ -16,6 +16,10 @@ class Evento < ApplicationRecord
 				errors.add(:base,"O término não pode ser anterior ao início")
 			end
 		end
+	end
+
+	def aa
+		puts engajamento.id
 	end
 
 end

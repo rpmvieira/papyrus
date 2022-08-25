@@ -1,4 +1,4 @@
-<%= turbo_stream.update "show_inicio" do %><%= render partial: "engajamentos/partials/conteudo/show_inicio" %><% end %>
+<%= turbo_stream.update "show_inicio" do %><%= render partial: "engajamentos/engajados/partials/conteudo/index_engajado" %><% end %>
 <%= turbo_stream.update "modal" do %>
 <%= abre_modal %>
 <div id="toast-success" class="flex items-center p-4 mb-0 w-full max-w text-gray-900 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 border" role="alert">
@@ -16,6 +16,3 @@
 </div>
 <%= fecha_modal %>
 <% end %>
-
-
-
