@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     post :show
     post :lideranca_new#, as: :lideranca_new
     post :lideranca_create#, as: :lideranca_create, :on => :collection
+    post :adesivacoes
+
     resources :engajados, module: :engajamentos do
+      
       post :index, :on => :collection
       post :show
 
@@ -20,6 +23,10 @@ Rails.application.routes.draw do
       post :contato_create
       post :endereco_novo
       post :endereco_create
+      get :adesivacao_nova
+      post :adesivacao_create
+      post :adesivacao_show
+
     end
     resources :eventos do#, module: :engajamentos do
       post :index, :on => :collection
@@ -31,7 +38,7 @@ Rails.application.routes.draw do
       post :eventos_dia, :on => :collection
     end
   end
-  # devise_for :usuarios
+
   resources :pessoas do
     resources :contatos, module: :pessoas do
       post :create#, :as => :usuario_nova_busca

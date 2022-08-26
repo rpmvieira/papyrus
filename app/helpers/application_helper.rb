@@ -42,4 +42,8 @@ module ApplicationHelper
 		return "inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700".html_safe
 	end
 
+	def botao_desabilitado(helper_svg)
+		return "<button type='button' class='text-gray-500 bg-gray-100 rounded-r-lg border border-gray-200 dark:bg-gray-500 cursor-not-allowed font-medium text-sm px-1 py-1 text-center' disabled='>#{helper_svg}</button>"
+	end
+
 end

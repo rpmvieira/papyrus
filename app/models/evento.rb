@@ -19,7 +19,8 @@ class Evento < ApplicationRecord
 	end
 
 	def aa
-		puts engajamento.id
+		
+		puts "#{engajamento.id} kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 	end
 
 end

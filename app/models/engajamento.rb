@@ -5,6 +5,7 @@ class Engajamento < ApplicationRecord
 	has_many :colaboracoes#, :foreign_key => "colaboracao_id"
 	has_many :engajados, through: :colaboracoes#, :foreign_key => "colaboracao_id"
 	has_many :eventos
+	has_many :adesivacoes
 
 	def responsavel?(usuario)
 		if responsavel_id == usuario.pessoa_id

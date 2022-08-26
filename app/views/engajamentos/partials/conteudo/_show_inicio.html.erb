@@ -10,22 +10,34 @@
 			<tbody>
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
 					<td class="px-4 py-2">Lideranças cadastradas:</td>
-					<td class="px-4 py-2 text-center"><%= @engajados.count %></td>
+					<td class="px-4 py-2 text-center"><b><%= @engajados.count %></b></td>
 				</tr>
 
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
-					<td class="px-4 py-2">Colaboradores viculados</td>
-					<td class="px-4 py-2 text-center"><%= @eventos.count %></td>
+					<td class="px-4 py-2">Colaboradores viculados:</td>
+					<td class="px-4 py-2 text-center"><b><%= @eng_colaboradores.count %></b></td>
 				</tr>
 
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
-					<td class="px-4 py-2">Eventos registrados</td>
-					<td class="px-4 py-2 text-center"><%= @eventos.count %></td>
+					<td class="px-4 py-2">Eventos registrados:</td>
+					<td class="px-4 py-2 text-center"><b><%= @eventos.count %></b></td>
 				</tr>
 
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
-					<td class="px-4 py-2">Adesivações agendadas</td>
-					<td class="px-4 py-2 text-center">0</td>
+					<td class="px-4 py-2">Adesivações agendadas:</td>
+					<td class="px-4 py-2 text-center"><b><%= @adesivacoes.count %></b></td>
+				</tr>
+				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
+					<td class="px-4 py-2">Liderança de destaque:</td>
+					<td class="px-4 py-2 text-center">
+						<b>
+							<% if @eng_colaboradores.present? %>
+							<%= denominacao(@engajados.sort_by{|x| x.descendentes.count }.reverse.first.pessoa) %> (<%= @engajados.sort_by{|x| x.descendentes.count }.reverse.first.descendentes.count %> colaboradores)
+							<% else %>
+							0
+							<% end %>
+						</b>
+					</td>
 				</tr>
 			</tbody>
 		</table>

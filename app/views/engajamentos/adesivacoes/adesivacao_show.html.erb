@@ -1,0 +1,39 @@
+<%= turbo_stream.update "modal" do %>
+<%= abre_modal %>
+<div class="flex items-center justify-between w-full p-5 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
+  <p class="text-md text-black-400 hover:text-sky-400"><b><%= denominacao(@engajado.pessoa) %></b><br><small>Adesivações</small></p>
+</div>
+<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
+  <div class="w-full p-2 border-b">
+    <% @adesivacoes.all.each do |adesivacao| %>
+    <div class="flex">
+      <div class="flex flex-col items-center mr-4">
+        <div>
+          <div class="flex items-center justify-center w-10 h-10 border rounded-full bg-green-100 border-green-500">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600 dark:text-green-400">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+            </svg>
+          </div>
+        </div>
+        <% if adesivacao != adesivacoes.last %><div class="w-px h-full bg-gray-300"></div><% end %>
+      </div>
+      <div class="pb-8 w-full">
+        <p class="mb-0 text-base text-md text-gray-600"><b><%= adesivacao.tipo_id %></b> - Placa: <%= adesivacao.placa %></p>
+        <p class="text-gray-700 text-base text-sm">Em <%= adesivacao.created_at.strftime("%d/%m/%Y") %>, às <%= adesivacao.created_at.strftime("%H:%M") %>.</p>
+      </div>
+      <div class="flex flex-col justify-start text-right">
+        <div class="inline-flex rounded-md shadow-sm gap-0.5" role="group">
+          <%#= button_to root_path(@engajamento), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%#= svg_olho %><%# end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<!--   <div class="p-2 border-b">
+</div> -->
+<div class="flex items-center p-2">
+  <%= link_to 'Cancelar', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-black border border-gray-700 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
+</div>
+</div>
+<%= fecha_modal %>
+<% end %>

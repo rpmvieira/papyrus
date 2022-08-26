@@ -55,48 +55,53 @@
                   <%= button_to evento_new_engajamento_eventos_path(@engajamento), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 rounded-r-lg rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_ticket %><% end %>
                   <% end %>
 
-                  <button type="button" class="text-gray-500 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-500 cursor-not-allowed font-medium text-sm px-1 py-1 text-center" disabled=""><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+
+                  <% if policy(:evento).evento_new? && @engajamento.coordenador?(current_usuario) && engajado.lideranca? %>
+                  <%= link_to engajamento_engajado_adesivacao_nova_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 rounded-r-lg rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
-                  </svg>
-                </button>
-              </div>
+                  </svg><% end %>
+                  <% end %>
 
-            </td>
-          </tr>
 
-        </div>
 
-        <% end %>
-      </tbody>
-    </table>
+                </div>
+
+              </td>
+            </tr>
+
+          </div>
+
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
 
   </div>
 
-</div>
 
-
-<% else %>
-<div class="grid grid-cols-1 p-8 gap-8 place-items-center border">
-  <div id="toast-interactive" class="p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400 border border-gray-700" role="alert">
-    <div class="flex">
-      <div class="inline-flex flex-shrink-0 ml-3 justify-center items-center w-8 h-8 text-yellow-500 bg-yellow-100 rounded-lg dark:text-yellow-300 dark:bg-yellow-900">
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-        <span class="sr-only">Warning icon</span>
-      </div>
-      <div class="ml-2 text-sm font-normal">
-        <span class="mb-1 text-xl font-semibold text-gray-900 dark:text-white">Nenhum registro</span>
-        <div class="mb-2 text-xs font-normal">Já é hora de mudar isso.</div> 
-        <div class="grid grid-cols-1 gap-4">
-          <% if policy(@engajamento).lideranca_new? %>
-          <%= button_to engajamento_lideranca_new_path(@engajamento), data: { turbo_frame: "modal" }, class: "cursor-pointer inline-flex justify-center w-full text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" do %> Iniciar agora<% end %>
-          <% else %>
-          -
-          <% end %>
-        </div>    
+  <% else %>
+  <div class="grid grid-cols-1 p-8 gap-8 place-items-center border">
+    <div id="toast-interactive" class="p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400 border border-gray-700" role="alert">
+      <div class="flex">
+        <div class="inline-flex flex-shrink-0 ml-3 justify-center items-center w-8 h-8 text-yellow-500 bg-yellow-100 rounded-lg dark:text-yellow-300 dark:bg-yellow-900">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+          <span class="sr-only">Warning icon</span>
+        </div>
+        <div class="ml-2 text-sm font-normal">
+          <span class="mb-1 text-xl font-semibold text-gray-900 dark:text-white">Nenhum registro</span>
+          <div class="mb-2 text-xs font-normal">Já é hora de mudar isso.</div> 
+          <div class="grid grid-cols-1 gap-4">
+            <% if policy(@engajamento).lideranca_new? %>
+            <%= button_to engajamento_lideranca_new_path(@engajamento), data: { turbo_frame: "modal" }, class: "cursor-pointer inline-flex justify-center w-full text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" do %> Iniciar agora<% end %>
+            <% else %>
+            -
+            <% end %>
+          </div>    
+        </div>
       </div>
     </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 
-<% end %>
+  <% end %>

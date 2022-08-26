@@ -6,6 +6,7 @@ class Colaboracao < ApplicationRecord
 
 	has_many :engajados, :dependent => :destroy
 	has_many :eventos, :dependent => :destroy
+	has_many :adesivacoes, :foreign_key => "responsavel_id", :dependent => :destroy
 
 	validates :colaborador_id, :engajamento_id, :t_colaboracao_id, presence: { message:"Não pode ficar em branco!" }
 	validates :colaborador_id, uniqueness: { scope: [:engajamento_id, :t_colaboracao_id],    message: "Já existe uma colaboração com estas configurações" }

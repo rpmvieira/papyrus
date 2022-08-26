@@ -15,19 +15,4 @@ class Contato < ApplicationRecord
 	scope :principais, -> {where("contatos.principal = true")}
 	scope :deste_t_contato,lambda{|t_contato_id| where("t_contato_id = ?",t_contato_id)}
 
-	# validate :formato_contato
-
-	# def formato_contato#(record)
-	# 	if t_contato_id == 1
-	# 		if contato.length != 11
-	# 			errors.add :contato, "Celular deve ter 11 digitos. Padrão '(00) 00000-0000'" #unless t_contato_id == 1 && contato.length != 11
-	# 		end
-	# 	elsif t_contato_id == 2
-	# 		if contato.length != 10
-	# 			errors.add :contato, "Contato fixo deve ter 10 digitos. Padrão '(00) 0000-0000'"	
-	# 		end
-	# 	end
-	# end
-
-
 end

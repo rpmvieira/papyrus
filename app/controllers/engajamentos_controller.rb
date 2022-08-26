@@ -1,4 +1,5 @@
 class EngajamentosController < ApplicationController
+  include Adesivacoes
   before_action :set_engajamento, only: %i[ show edit update destroy ]
 
   def index
@@ -12,10 +13,14 @@ class EngajamentosController < ApplicationController
     if @engajamento.responsavel?(current_usuario)
       @colaboracoes = @engajamento.colaboracoes
       @engajados = @engajamento.engajados.liderancas
+      @eng_colaboradores =  @engajamento.engajados.colaboradores.order(created_at: :desc)
       @eventos = @engajamento.eventos#.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario))
+      @adesivacoes = @engajamento.adesivacoes
     elsif @engajamento.colaboracoes.deste_colaborador(current_usuario)
+      @adesivacoes = @engajamento.adesivacoes.deste_coordenador(@engajamento.coordenador?(current_usuario))
       @colaboracoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
       @engajados = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
+      @eng_colaboradores =  @engajamento.engajados.deste_colaborador(current_usuario).colaboradores.order(created_at: :desc)
       @eventos = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).order(inicio: :asc)
     end
   end
@@ -92,6 +97,11 @@ class EngajamentosController < ApplicationController
   end
 
 
+  def adesivacoes
+    @engajamento = Engajamento.find(params[:engajamento_id])
+    @adesivacoes = @engajamento.adesivacoes.deste_coordenador(@engajamento.coordenador?(current_usuario))
+    render( turbo_stream: turbo_stream.update("show_inicio", template: "engajamentos/adesivacoes" ))
+  end
 
   private
   def set_engajamento
