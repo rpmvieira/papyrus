@@ -7,6 +7,7 @@ module Contatos
 		@pessoa = @engajado.pessoa
 		@contato = @pessoa.contatos.new
 		render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/partials/form/contato_novo", locals: { pessoa: @pessoa }))
+		# render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/new/ts_lideranca_new", locals: { pessoa: @pessoa }))
 	end
 
 

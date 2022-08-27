@@ -1,3 +1,12 @@
+<%#= turbo_stream.update "show_principal" do %>
+
+<%# end%>
+
+<%= turbo_stream.update "show_principal" do %>
+
+
+
+
 <div class="font-light border border-b-1 border-gray-200 dark:border-gray-700">
 	<div class="overflow-x-auto relative">
 		<table class="w-full text-sm text-left text-black-500 dark:text-black-400">
@@ -10,12 +19,12 @@
 			<tbody>
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
 					<td class="px-4 py-2">Lideranças cadastradas:</td>
-					<td class="px-4 py-2 text-center"><b><%= @engajados.count %></b></td>
+					<td class="px-4 py-2 text-center"><b><%= @liderancas.count %></b></td>
 				</tr>
 
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
 					<td class="px-4 py-2">Colaboradores viculados:</td>
-					<td class="px-4 py-2 text-center"><b><%= @eng_colaboradores.count %></b></td>
+					<td class="px-4 py-2 text-center"><b><%= @colaboradores.count %></b></td>
 				</tr>
 
 				<tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
@@ -31,8 +40,8 @@
 					<td class="px-4 py-2">Liderança de destaque:</td>
 					<td class="px-4 py-2 text-center">
 						<b>
-							<% if @eng_colaboradores.present? %>
-							<%= denominacao(@engajados.sort_by{|x| x.descendentes.count }.reverse.first.pessoa) %> (<%= @engajados.sort_by{|x| x.descendentes.count }.reverse.first.descendentes.count %> colaboradores)
+							<% if @colaboradores.present? %>
+							<%= denominacao(@liderancas.sort_by{|x| x.descendentes.count }.reverse.first.pessoa) %> (<%= @liderancas.sort_by{|x| x.descendentes.count }.reverse.first.descendentes.count %> colaboradores)
 							<% else %>
 							0
 							<% end %>
@@ -43,3 +52,4 @@
 		</table>
 	</div>
 </div>
+<% end %>

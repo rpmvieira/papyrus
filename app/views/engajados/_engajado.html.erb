@@ -1,0 +1,22 @@
+<div id="<%= dom_id engajado %>">
+  <% if action_name == "index" %>
+  <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-pre-line w-full"><%= engajado.id %></td>
+    <td class="text-right">
+
+      <div class="flex flex-col justify-start text-right px-2">
+        <div class="inline-flex rounded-md  gap-0.5" role="group">
+          <%# if action_name != "show" %>
+
+          <%# if policy(engajamento).show? %>
+          <%#= link_to engajamento, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg><%# end %>
+          <%# end %>
+          <%# end %>
+
+        </div>
+      </div>
+    </td>
+  </tr>
+  <% elsif action_name == "show" %>
+  <% end %>
+</div>

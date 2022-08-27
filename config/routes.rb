@@ -6,13 +6,16 @@ Rails.application.routes.draw do
 
   resources :mensagens
   resources :engajamentos do
+    post :index
     post :show
     post :lideranca_new#, as: :lideranca_new
     post :lideranca_create#, as: :lideranca_create, :on => :collection
     post :adesivacoes
+    post :turbo_show, as: :tshow
+    post :cancelar
 
     resources :engajados, module: :engajamentos do
-      
+
       post :index, :on => :collection
       post :show
 

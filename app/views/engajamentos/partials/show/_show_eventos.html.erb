@@ -1,4 +1,4 @@
-<%= turbo_stream.update "show_inicio" do %>
+<%= turbo_stream.update "show_eventos" do %>
 
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
 <% date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).to_a %>

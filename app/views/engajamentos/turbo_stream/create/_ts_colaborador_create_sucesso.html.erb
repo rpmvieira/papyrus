@@ -1,4 +1,4 @@
-<%= turbo_stream.update "show_inicio" do %><%= render partial: "engajamentos/engajados/partials/conteudo/index_engajado" %><% end %>
+<%#= turbo_stream.update "show_inicio" do %><%#= render partial: "engajamentos/engajados/partials/conteudo/index_engajado" %><%# end %>
 <%= turbo_stream.update "modal" do %>
 <%= abre_modal %>
 <div id="toast-success" class="flex items-center p-4 mb-0 w-full max-w text-gray-900 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 border" role="alert">
@@ -12,7 +12,7 @@
 	<%= render partial: "engajamentos/engajados/partials/lideranca_colaborador", locals: { engajado: @engajado } %>
 </div>
 <div>
-	<%= link_to 'Cancelar', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-black border border-gray-700 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
+	<%= botao_modal_hide%>
 </div>
 <%= fecha_modal %>
 <% end %>

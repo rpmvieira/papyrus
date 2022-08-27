@@ -4,6 +4,88 @@
     <%= link_to 'New pessoa', new_pessoa_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+
+
+  <div id="engajamento" class="min-w-full mt-3">
+    <div class="mb-4 border-b border-black-200 dark:border-gray-700">
+      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500" id="inicio-tab" data-tabs-target="#inicio" type="button" role="tab" aria-controls="inicio" aria-selected="true">Início</button>
+        </li>
+        <%# if @engajamento.colaboracoes.present? %>
+        <%# if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
+
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="eventos-tab" data-tabs-target="#eventos" type="button" role="tab" aria-controls="eventos" aria-selected="false">Eventos</button>
+        </li>
+
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="adesivacoes-tab" data-tabs-target="#adesivacoes" type="button" role="tab" aria-controls="adesivacoes" aria-selected="false">Adesivações</button>
+        </li>
+
+
+        <li class="mr-2" role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="liderancas-tab" data-tabs-target="#liderancas" type="button" role="tab" aria-controls="liderancas" aria-selected="false">Lideranças</button>
+        </li>
+        <%# end %>
+        <%# if @engajamento.responsavel?(current_usuario) %>
+
+        <!-- <li role="presentation">
+          <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700" id="opcoes-tab" data-tabs-target="#opcoes" type="button" role="tab" aria-controls="opcoes" aria-selected="false">Opções</button>
+        </li> -->
+        <%# end %>
+        <%# end %>
+      </ul>
+    </div>
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full sm:px-6 lg:px-8">
+        <div id="myTabContent">
+          <div class=" p-2" id="inicio" role="tabpanel" aria-labelledby="inicio-tab">
+            <div class="" id="principal">pum<%#= render partial: "engajamentos/partials/conteudo/index_principal"%></div>
+          </div>
+
+          <%# if @engajamento.colaboracoes.present? %>
+          <%# if @engajamento.responsavel?(current_usuario) %>
+          <div class="hidden p-2 " id="eventos" role="tabpanel" aria-labelledby="eventos-tab">
+            <div class="eventos"><%= render partial: "engajamentos/partials/conteudo/index_carregando"%></div>
+          </div>
+          <%# end %>
+
+          <%# if @engajamento.colaboracoes.deste_colaborador(current_usuario).count >= 2 %>
+          <div class="hidden p-2 " id="adesivacoes" role="tabpanel" aria-labelledby="adesivacoes-tab">
+            <%= render partial: "engajamentos/partials/conteudo/index_carregando"%><%##= render "engajamentos/partials/adesivacoes" %>
+          </div>
+          <%# end %>
+
+          <%# end %>
+          <div class="hidden p-2 " id="liderancas" role="tabpanel" aria-labelledby="liderancas-tab">
+            <%= render partial: "engajamentos/partials/conteudo/index_carregando"%><%##= render "engajamentos/partials/liderancas" %>
+          </div>
+
+          <div class="hidden p-2 " id="opcoes" role="tabpanel" aria-labelledby="opcoes-tab">
+            <%= render partial: "engajamentos/partials/conteudo/index_carregando"%>
+            <!-- <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">opcoes tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.ssssssssssssssssssssssssssssssssssssssssssssssssss</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div id="pessoas" class="min-w-full">
 
     <div class="flex flex-col">

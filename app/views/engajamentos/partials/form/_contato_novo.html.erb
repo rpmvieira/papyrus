@@ -1,64 +1,51 @@
-<%= turbo_frame_tag "modal" do %>
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="fixed z-20 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-	<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-		<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-		<div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-
-
-
-			<div class="flex items-center justify-between w-full p-5 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
-				<p class="text-md text-black-400 hover:text-sky-400"><b><%= denominacao(pessoa) %></b><br><small>Adicionar contato</small></p>
-			</div>
-			<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
-				<%= form_with(model: @contato, url: engajamento_engajado_contato_create_path(@engajamento,@engajado), data: { turbo_frame: "_top" }) do |form| %>
-				<div class="" id="flash"></div>
-				<div class="p-2">
-					<% if pessoa.contatos.exists? %>
-					<%= form.label 'Tipo', class: "text-sm font-medium text-gray-800 mb-1 block" %>
-					<%= form.collection_select :t_contato_id, TContato.order(:nome), :id, :nome, html_options: {class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}  %>
-					<% else %>
-					<%= form.hidden_field :t_contato_id, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: TContato.find_by_nome("Celular").id %>
-					<% end %>
-				</div>
-
-				<div class="p-2">
-					<%= form.label :contato, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-					<%= form.text_field :contato, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "99999999999" %>
-				</div>
-
-				<div class="p-2">
-					<% if @pessoa.contatos.exists? %>
-					<%= form.label "Principal?", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-					<div class="flex items-center mb-4">
-						<div>
-							<%= form.radio_button :principal, true, checked: true %>
-							<%= form.label "Sim", class: "ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-						</div>
-						<div class="px-6">
-							<%= form.radio_button :principal, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600", value: false %>
-							<%= form.label "Não", class: "ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
-						</div>
-					</div>
-					<% else %>
-					<%= form.hidden_field :principal, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: true %>
-					<% end %>
-				</div>
-
-				<%= form.hidden_field :status, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: "ativo" %>
-
-				<div class="flex items-center p-2 border-t">
-					<%= form.submit "Registrar", class: "cursor-pointer inline-flex items-center text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" %>
-					<%= link_to 'Cancelar', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-black border border-gray-700 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
-					<%# if @pessoa.persisted? %>
-					<%#= link_to 'LIMPA FLOW', engajamento %>
-					<%# end %>
-				</div>
-				<% end %>
-			</div>
-
-		</div>
-	</div>
+<%#= turbo_frame_tag "modal" do %>
+<%= turbo_stream.update "modal" do %>
+<%= abre_modal%>
+<div class="flex items-center justify-between w-full p-5 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
+	<p class="text-md text-black-400 hover:text-sky-400"><b><%= denominacao(pessoa) %></b><br><small>Adicionar contato</small></p>
 </div>
+<div class="items-center justify-between w-full p-2 border border-gray-200 text-sm text-left text-black-500 dark:text-black-400">
+	<%= form_with(model: @contato, url: engajamento_engajado_contato_create_path(@engajamento,@engajado), data: { turbo_frame: "_top" }) do |form| %>
+	<div class="" id="flash"></div>
+	<div class="p-2">
+		<% if pessoa.contatos.exists? %>
+		<%= form.label 'Tipo', class: "text-sm font-medium text-gray-800 mb-1 block" %>
+		<%= form.collection_select :t_contato_id, TContato.order(:nome), :id, :nome, html_options: {class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}  %>
+		<% else %>
+		<%= form.hidden_field :t_contato_id, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: TContato.find_by_nome("Celular").id %>
+		<% end %>
+	</div>
+
+	<div class="p-2">
+		<%= form.label :contato, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+		<%= form.text_field :contato, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "99999999999" %>
+	</div>
+
+	<div class="p-2">
+		<% if @pessoa.contatos.exists? %>
+		<%= form.label "Principal?", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+		<div class="flex items-center mb-4">
+			<div>
+				<%= form.radio_button :principal, true, checked: true %>
+				<%= form.label "Sim", class: "ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+			</div>
+			<div class="px-6">
+				<%= form.radio_button :principal, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600", value: false %>
+				<%= form.label "Não", class: "ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+			</div>
+		</div>
+		<% else %>
+		<%= form.hidden_field :principal, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: true %>
+		<% end %>
+	</div>
+
+	<%= form.hidden_field :status, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", value: "ativo" %>
+
+	<div class="flex items-center p-2 border-t">
+		<%= form.submit "Registrar", class: "cursor-pointer inline-flex items-center text-green-800 hover:text-white border border-green-800 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" %>
+		<%= botao_modal_hide%>
+	</div>
+	<% end %>
+</div>
+<%= fecha_modal %>
 <% end %>

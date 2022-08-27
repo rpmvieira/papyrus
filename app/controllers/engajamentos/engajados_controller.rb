@@ -19,7 +19,7 @@ class Engajamentos::EngajadosController < ApplicationController
 
 	def colaborador_new
 		@pessoa = Pessoa.new
-		render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/new/ts_colaborador_new", locals: { pessoa: @pessoa, engajamento: @engajamento }))
+		render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/partials/form/colaborador_new", locals: { pessoa: @pessoa, engajamento: @engajamento }))
 	end
 
 	def colaborador_create

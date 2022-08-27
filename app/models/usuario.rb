@@ -7,8 +7,8 @@ class Usuario < ApplicationRecord
 
   has_many :colaboracoes, through: :pessoa
 
-  validates_uniqueness_of :pessoa_id, message: "Não pode ter mais de um utilizador"
-  validates :pessoa_id, presence: true
+  # validates_uniqueness_of :pessoa_id, message: "Não pode ter mais de um utilizador"
+  # validates :pessoa_id, presence: true
 
   def acesso_total?
     begin

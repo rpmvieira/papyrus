@@ -14,3 +14,6 @@ application.register("flash", FlashController)
 
 
 
+import ModalController from "controllers/modal_controller"
+application.register("modal", ModalController)
+

@@ -1,10 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="fixed z-20 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-	<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-		<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-		<div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+<%= abre_modal%>
+
+
 			<div class="flex items-center justify-between w-full p-4 text-left border border-gray-200  focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-black-900 dark:text-white">
 				<p class="text-lg font-bold text-black-400 hover:text-sky-400"><%= denominacao(engajado.pessoa) %></p>
 			</div>
@@ -68,7 +65,7 @@
 
 
 					<% if engajado.descendentes.present? %>
-					<h2 class="flex items-center justify-between w-full px-2 py-1 font-medium text-left"><b>Esta liderança possui <%= pluralize(engajado.descendentes.count, "colaborador", locale: 'pt-BR') %>*</b></h2>
+					<h2 class="flex items-center justify-between w-full px-2 py-1 font-medium text-left"><b>Esta liderança possui <%= pluralize(engajado.descendentes.count, "colaborador", locale: 'pt-BR') %></b></h2>
 					<ul class="px-4 space-y-1 max-w-md list-inside text-gray-500 dark:text-gray-400">
 						<% engajado.descendentes.each do |colaborador| %>
 						<li class="flex items-center">
@@ -79,7 +76,7 @@
 						<% end %>
 					</ul>
 					<% else %>
-					<div class="flex items-center justify-between w-full px-2 py-1 font-medium text-left "><span><b>Liderança sem colaboradores*</b></span></div>
+					<div class="flex items-center justify-between w-full px-2 py-1 font-medium text-left "><span><b>Liderança sem colaboradores</b></span></div>
 					<% end %>
 					
 
@@ -97,16 +94,10 @@
 						</ul>
 					</div>
 					<% end %>
-
-				</div>
-				
+				</div>				
 			</div>
 			<div class="py-2">
-				<button type="button" class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-4 py-1.5 text-center" disabled="">Gerenciar</button>
-				<%= link_to 'Cancelar', @engajamento, class: "cursor-pointer inline-flex items-center text-gray-700 hover:text-white border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xs px-4 py-1.5 text-center mr-2 mb-2 dark:border-gray-500 dark:text-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" %>
+				<%= botao_modal_hide%>
 			</div>
-			<p class="px-2 text-xs">* A área de controle de liderança será liberada nos pŕoximos dias</p>
-		</div>
-	</div>
-</div>
-<% end %>
+			<%= fecha_modal %>
+			<% end %>

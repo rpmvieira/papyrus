@@ -15,12 +15,12 @@ class Pessoa < ApplicationRecord
   has_many :contatos, as: :contatavel,:dependent=>:destroy #ver se isso funciona e colocar nos outros
   accepts_nested_attributes_for :contatos, :reject_if => lambda { |a| a[:contato].blank? }, :allow_destroy => true
 
-  validate :designacao
-  validates :mae, :nascimento, presence: { message:"Não pode ficar em branco!" }
+  # validate :designacao
+  validates :nome, :mae, :nascimento, presence: { message:"Não pode ficar em branco!" }
 
   enum nacionalidade_id: { 'Brasileira'=> 1, 'Naturalizado'=> 2, 'Estrangeiro'=>3 }
 
-  def designacao;if nome.blank? && apelido.blank?;errors.add(:base,"A denominação de nome ou apelido devem ser preenchidos");end;end
+  # def designacao;if nome.blank? && apelido.blank?;errors.add(:base,"A denominação de nome ou apelido devem ser preenchidos");end;end
 
   def retorna_principal(colecao)
   	begin

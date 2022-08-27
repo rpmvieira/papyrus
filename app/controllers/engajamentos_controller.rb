@@ -1,30 +1,66 @@
 class EngajamentosController < ApplicationController
   include Adesivacoes
-  before_action :set_engajamento, only: %i[ show edit update destroy ]
+  before_action :set_engajamento, only: %i[ edit update destroy ]
+
+
+  layout :resolve_layout
+
 
   def index
     authorize Engajamento
     @engajamentos = Engajamento.all
+    # render( turbo_stream: turbo_stream.update("principal", partial: "engajamentos/turbo_stream/ts_index" ))
+
   end
 
-  def show
-    authorize @engajamento
+  def cancelar
+    @engajamento = Engajamento.find(params[:engajamento_id])
+    puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
+    # render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/ts_cancelar" ))
+    # render( turbo_stream: turbo_stream.update("modal", template: "engajamentos/cancelar" ))
+  end
 
+
+  def turbo_show
+    # @engajamento = Engajamento.find(params[:id])
+    # authorize @engajamento
+    # if @engajamento.responsavel?(current_usuario)
+    #   @coordenacoes = @engajamento.colaboracoes
+    #   @liderancas = @engajamento.engajados.liderancas
+    #   @colaboradores =  @engajamento.engajados.colaboradores.order(created_at: :desc)
+    #   @eventos = @engajamento.eventos#.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario))
+    #   @adesivacoes = @engajamento.adesivacoes
+    # elsif @engajamento.colaboracoes.deste_colaborador(current_usuario)
+    #   @adesivacoes = @engajamento.adesivacoes.deste_coordenador(@engajamento.coordenador?(current_usuario))
+    #   @coordenacoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
+    #   @liderancas = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
+    #   @colaboradores =  @engajamento.engajados.deste_colaborador(current_usuario).colaboradores.order(created_at: :desc)
+    #   @eventos = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).order(inicio: :asc)
+    # end
+    render( turbo_stream: turbo_stream.update("principal", partial: "engajamentos/turbo_stream/ts_cancelar" ))
+  end
+
+
+  def show
+    @engajamento = Engajamento.find(params[:id])
+    authorize @engajamento
     if @engajamento.responsavel?(current_usuario)
-      @colaboracoes = @engajamento.colaboracoes
-      @engajados = @engajamento.engajados.liderancas
-      @eng_colaboradores =  @engajamento.engajados.colaboradores.order(created_at: :desc)
+      @coordenacoes = @engajamento.colaboracoes
+      @liderancas = @engajamento.engajados.liderancas
+      @colaboradores =  @engajamento.engajados.colaboradores.order(created_at: :desc)
       @eventos = @engajamento.eventos#.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario))
       @adesivacoes = @engajamento.adesivacoes
     elsif @engajamento.colaboracoes.deste_colaborador(current_usuario)
       @adesivacoes = @engajamento.adesivacoes.deste_coordenador(@engajamento.coordenador?(current_usuario))
-      @colaboracoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
-      @engajados = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
-      @eng_colaboradores =  @engajamento.engajados.deste_colaborador(current_usuario).colaboradores.order(created_at: :desc)
+      @coordenacoes = @engajamento.colaboracoes.deste_colaborador(current_usuario)
+      @liderancas = @engajamento.engajados.deste_colaborador(current_usuario).liderancas
+      @colaboradores =  @engajamento.engajados.deste_colaborador(current_usuario).colaboradores.order(created_at: :desc)
       @eventos = @engajamento.eventos.deste_responsavel_id(@engajamento.coordenadoria?(current_usuario)).order(inicio: :asc)
     end
+    # render( turbo_stream: turbo_stream.update("principal", partial: "engajamentos/partials/conteudo/show_principal" ))
+     # render( turbo_stream: turbo_stream.update("principal", template: "engajamentos/show" ))
   end
-
+  
   def new;@engajamento = Engajamento.new;end
 
   def edit;end
@@ -69,7 +105,7 @@ class EngajamentosController < ApplicationController
     authorize @engajamento
     @tipo = params[:tipo]
     @pessoa = Pessoa.new
-    render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/turbo_stream/new/ts_lideranca_new", locals: { pessoa: @pessoa }))
+    render( turbo_stream: turbo_stream.update("modal", partial: "engajamentos/partials/form/lideranca_new", locals: { pessoa: @pessoa }))
   end
 
   def lideranca_create
@@ -103,9 +139,20 @@ class EngajamentosController < ApplicationController
     render( turbo_stream: turbo_stream.update("show_inicio", template: "engajamentos/adesivacoes" ))
   end
 
+
+  def resolve_layout
+    case action_name
+    when "show"
+      'applicationd'
+    else
+      'application'
+      # current_usuario ? "landing_page" : "publico"
+    end
+  end
+
   private
   def set_engajamento
-    @engajamento = Engajamento.find(params[:id])
+    @engajamento = Engajamento.find(params[:engajamento_id])
   end
 
   def engajamento_params

@@ -1,0 +1,55 @@
+<%#= turbo_stream.update "show_liderancas" do %>
+<div id="<%= dom_id engajado %>">
+  <tr class="text-base bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
+    <td class="px-2 py-1.5">
+      <b><%= denominacao(engajado.pessoa) %></b> <%= "<span class='bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900'>Lider</span>".html_safe if engajado.lideranca? %>
+
+
+      <% if engajado.lideranca? && engajado.descendentes.present? %>
+      <div class="">
+        <ul class="ml-4 max-w-md list-inside text-black">
+          <% engajado.descendentes.each do |colaborador| %>
+          <%= render partial: "engajamentos/partials/show/show_engajados_colaboradores", locals: { colaborador: colaborador} %>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>     
+
+    </td>
+    <td class="text-right">
+      <div class="inline-flex rounded-md shadow-sm gap-0.5 mr-4" role="group">
+        <%= button_to engajamento_engajado_show_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_olho %>
+        <% end %>
+        <div id="contato_principal-<%= engajado.id %>">
+          <% if !engajado.pessoa.contatos.exists?  && @engajamento.coordenador?(current_usuario) %>
+          <%= button_to engajamento_engajado_contato_novo_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 bg-yellow-100 border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_telefone %><% end %>
+          <% end %>
+        </div>
+        <div id="endereco_principal-<%= engajado.id %>">
+          <% if !engajado.pessoa.enderecos.exists?  && @engajamento.coordenador?(current_usuario) %>
+          <%= button_to engajamento_engajado_endereco_novo_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 bg-yellow-100 border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_casa %><% end %>
+          <% end %>
+        </div>
+        <% if policy(@engajamento).show? && @engajamento.coordenador?(current_usuario) && engajado.lideranca? %>
+        <%= button_to engajamento_engajado_colaborador_new_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 rounded-r-lg rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_user_plus %><% end %>
+        <% end %>
+        <% if policy(:evento).evento_new? && @engajamento.coordenador?(current_usuario) && engajado.lideranca? %>
+        <%= button_to evento_new_engajamento_eventos_path(@engajamento), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 rounded-r-lg rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><%= svg_ticket %><% end %>
+        <% end %>
+
+
+        <% if policy(:evento).evento_new? && @engajamento.coordenador?(current_usuario) && engajado.lideranca? %>
+        <%= link_to engajamento_engajado_adesivacao_nova_path(@engajamento,engajado), data: { turbo_frame: "modal" }, class: "inline-flex items-center py-1 px-1 text-sm font-medium text-gray-900 rounded-r-lg rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" do %><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+        </svg><% end %>
+        <% end %>
+
+
+
+      </div>
+
+    </td>
+  </tr>
+
+</div>
+<%# end %>
